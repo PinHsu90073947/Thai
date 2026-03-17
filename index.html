@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇹🇭 芭達雅潑水節 Chill 遊指南 💦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc; /* Tailwind slate-50 */
+        }
+        /* Custom scrollbar for horizontal scrolling elements */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Chart Container specific constraints */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 280px;
+            }
+        }
+        
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #0ea5e9; /* sky-500 */
+            position: absolute;
+            left: -6px;
+            top: 6px;
+        }
+        .timeline-line {
+            border-left: 2px solid #e2e8f0; /* slate-200 */
+            margin-left: 6px;
+            padding-left: 1.5rem;
+            padding-bottom: 1.5rem;
+            position: relative;
+        }
+    </style>
+    
+    <!-- Chosen Palette: Tropical Chill (Slate-50 background, Sky-500 for water/action accents, Teal-500 for chill elements, Amber-400 for warnings/highlights) -->
+    
+    <!-- Application Structure Plan: 
+    This SPA is designed as a "Mobile-First Digital Travel Companion". 
+    1. **Header/Hero**: Establishes the vibe and the core rule ("Chill / Free Style").
+    2. **Interactive Checklist**: Tasks you MUST do before/at arrival (Cash, Arrival Card, Gear). Checkboxes provide a sense of completion.
+    3. **Vibe Forecast (Chart)**: A fun radar chart setting expectations for daily activities (Party vs. Chill vs. Water Fights) to visually summarize the trip's pacing.
+    4. **Daily Itinerary (Tabbed)**: Horizontal scrolling tabs for Days 1-5. Clicking a tab updates the vertical timeline below. This prevents the user from endless scrolling and lets them focus on "Today's" plan.
+    5. **Backup Spots (Filterable Grid)**: A database of optional spots. Users can filter by "Food", "Activity", or "Nightlife". This directly supports the "Free Style" rule, allowing spontaneous planning.
+    -->
+
+    <!-- Visualization & Content Choices: 
+    - Goal: Inform (Checklist) -> Viz: Interactive HTML check items -> Interaction: Click to strike-through -> Justification: Active participation ensures readiness -> Library: Vanilla JS + Tailwind.
+    - Goal: Pacing/Overview -> Viz: Radar Chart (Energy/Vibe) -> Interaction: Hover tooltips -> Justification: Fun, visual way to show when to save energy and when to party without reading all text -> Library: Chart.js (Canvas).
+    - Goal: Organize (Schedule) -> Viz: Vertical Timeline inside Tabs -> Interaction: Tab switching -> Justification: Standard, highly readable pattern for itineraries -> Library: HTML/JS.
+    - Goal: Explore (Backup Spots) -> Viz: Filterable Card Grid -> Interaction: Category buttons -> Justification: Makes finding a spontaneous activity quick and structured -> Library: Vanilla JS filtering.
+    - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Unicode emojis serve as iconography.
+    -->
+</head>
+<body class="text-slate-800 antialiased selection:bg-sky-200">
+
+    <!-- Navbar / Header -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="font-bold text-xl text-sky-600 tracking-wide">🇹🇭 Pattaya Songkran</div>
+            <div class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full">4/16 - 4/20</div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-12">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 pt-4">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-800 leading-tight">
+                芭達雅潑水節 <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-teal-400">五天四夜 Chill 遊指南</span> 💦
+            </h1>
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-6 inline-block text-left shadow-sm">
+                <p class="font-bold text-amber-700 mb-1">🌟 本團最高指導原則</p>
+                <p class="text-amber-900 text-sm">大家出遊請自由自在，不用太客氣，想去哪就去哪！<br/>行程僅供參考，隨時可以拆團、隨時可以耍廢，開心最重要！</p>
+            </div>
+        </section>
+
+        <!-- Pre-trip Checklist -->
+        <section id="checklist-section">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold flex items-center gap-2">⚠️ 行前必看任務 <span class="text-sm font-normal text-slate-400 bg-slate-100 px-2 py-1 rounded">點擊打卡</span></h2>
+                <p class="text-slate-500 text-sm mt-1">請確保在出發前完成以下準備，點擊項目即可標記完成。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="checklist-container">
+                <!-- Checklist items injected via JS -->
+            </div>
+        </section>
+
+        <!-- Vibe Forecast Chart -->
+        <section id="chart-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="mb-6 text-center">
+                <h2 class="text-2xl font-bold mb-2">📊 每日行程 Vibe 預測</h2>
+                <p class="text-slate-500 text-sm">看看哪天需要保留體力，哪天準備戰鬥！</p>
+            </div>
+            <!-- Chart Container (Strictly styled) -->
+            <div class="chart-container">
+                <canvas id="vibeChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Daily Itinerary -->
+        <section id="itinerary-section">
+            <div class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold">📅 每日行程總覽</h2>
+                    <p class="text-slate-500 text-sm mt-1">點擊下方日期切換每日詳細時間表。</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex overflow-x-auto hide-scrollbar gap-2 border-b border-slate-200 pb-2 mb-6" id="day-tabs">
+                <!-- Tabs injected via JS -->
+            </div>
+
+            <!-- Timeline Content -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <div id="timeline-header" class="mb-6 border-b border-slate-100 pb-4">
+                    <h3 class="text-xl font-bold text-sky-600" id="current-day-title">Day 1：4/16（四）</h3>
+                    <p class="text-slate-500" id="current-day-desc">潑水節開戰與安頓</p>
+                </div>
+                <div id="timeline-container" class="ml-2">
+                    <!-- Timeline items injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Backup Spots -->
+        <section id="spots-section" class="pb-12">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold">🗺️ 備用行程區（Free Style 專用）</h2>
+                <p class="text-slate-500 text-sm mt-1">想出門走走但沒想法？從這邊挑選有興趣的地方，隨時出發！</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap gap-2 mb-6" id="spot-filters">
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-slate-800 text-white shadow-sm" data-filter="all">全部</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-white text-slate-600 border border-slate-200 hover:bg-slate-50" data-filter="activity">🏝️ 體驗/活動</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-white text-slate-600 border border-slate-200 hover:bg-slate-50" data-filter="nightlife">🔞 娛樂/夜市</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-white text-slate-600 border border-slate-200 hover:bg-slate-50" data-filter="food">📸 美景/餐廳</button>
+            </div>
+
+            <!-- Spots Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="spots-grid">
+                <!-- Spots injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-6 text-center text-sm">
+        <p>Have a good trip! 放鬆身心，享受旅程 🇹🇭</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Data Storage ---
+
+        const checklistData = [
+            { id: 'task1', icon: '💰', title: '兩萬台幣等值現金', desc: '海關可能抽查財力，務必準備。' },
+            { id: 'task2', icon: '📄', title: '填寫線上入境卡', desc: '出發前兩天填寫完畢。', link: 'https://tdac.immigration.go.th/arrival-card/#/home' },
+            { id: 'task3', icon: '🎒', title: '戰鬥裝備準備', desc: '防水包、手機防水套 (出門必濕)。' }
+        ];
+
+        const itineraryData = [
+            {
+                id: 1, date: '4/16 (四)', title: 'Day 1', subtitle: '潑水節開戰與安頓',
+                events: [
+                    { time: '08:30', title: '📍 桃園機場二航集合', desc: '準備出發！' },
+                    { time: '13:05', title: '🛬 抵達曼谷機場', desc: '' },
+                    { time: '14:30', title: '🛂 通關入境', desc: '預期人潮眾多，請耐心等候。' },
+                    { time: '15:00', title: '🚐 前往芭達雅', desc: '搭乘包車或客運。' },
+                    { time: '17:00', title: '🏡 入住 Villa', desc: '安頓行李。' },
+                    { time: '傍晚', title: '💵 換錢 & 🍲 晚餐', desc: '派代表去 Terminal 21 或 Big C 換泰銖。晚餐吃泰式火鍋（母嘎塔）。' },
+                    { time: '夜晚', title: '🌊 潑水節狂歡 & 🍻 續攤', desc: '從 Soi 1 一路戰到 Walking Street！結束後買啤酒/麻回 Villa 桑。' }
+                ]
+            },
+            {
+                id: 2, date: '4/17 (五)', title: 'Day 2', subtitle: '鱷魚、土嗨與大廚上菜',
+                events: [
+                    { time: '中午', title: '🍽️ 隨性午餐', desc: 'Timmy 大廚下廚或叫 Grab 外送。' },
+                    { time: '下午', title: '🐊 看鱷魚咬人 / 🔫 打靶', desc: '建議 15:00 前抵達鱷魚秀。想打靶的也可在此時安插。' },
+                    { time: '晚餐', title: '🍲 預定餐廳聚餐', desc: '享用美食，結束後回住宿 QK 充個電。' },
+                    { time: '深夜', title: '🪩 Area 39 土嗨吧', desc: '體驗最道地的泰國土嗨文化！' }
+                ]
+            },
+            {
+                id: 3, date: '4/18 (六)', title: 'Day 3', subtitle: '鬆一下與夜生活',
+                events: [
+                    { time: '下午', title: '💆‍♂️ 泰式馬殺雞', desc: '回血時間，舒緩前兩天的疲勞。' },
+                    { time: '夜晚', title: '🎵 The Stone House', desc: '聽歌喝酒 Chill 一下。' },
+                    { time: '深夜', title: '🍸 Midnight Club', desc: '芭達雅夜生活體驗。' }
+                ]
+            },
+            {
+                id: 4, date: '4/19 (日)', title: 'Day 4', subtitle: 'Free Style 自由日',
+                events: [
+                    { time: '全天', title: '✨ 自由活動時間', desc: '可待在 Villa 耍廢，或從下方「備用行程區」挑選想去的地方（如小珊瑚島、網美餐廳等）。' }
+                ]
+            },
+            {
+                id: 5, date: '4/20 (一)', title: 'Day 5', subtitle: '賦歸',
+                events: [
+                    { time: '白天', title: '🛍️ 最後採買 / 自由活動', desc: '把握最後在芭達雅的時光。' },
+                    { time: '21:00', title: '🚐 前往機場', desc: '從芭達雅搭車前往曼谷機場準備回台。' }
+                ]
+            }
+        ];
+
+        const spotsData = [
+            { id: 1, title: '小珊瑚島一日遊', category: 'activity', icon: '🏝️', desc: '搭船去小島租機車玩水', link: 'https://maps.app.goo.gl/G3KwiRnmDSxrR3ta7' },
+            { id: 2, title: '室內打靶場', category: 'activity', icon: '🔫', desc: '真槍實彈射擊體驗', link: 'https://maps.app.goo.gl/TkyQR37nSxVpWpCs6' },
+            { id: 3, title: '99 Show Pattaya', category: 'nightlife', icon: '🔞', desc: '芭達雅經典成人秀', link: 'https://maps.app.goo.gl/mqDk1V4HRHks3kFS7' },
+            { id: 4, title: 'Thepprasit 夜市', category: 'nightlife', icon: '🍢', desc: '週末當地熱鬧夜市吃小吃', link: 'https://maps.app.goo.gl/eHPjicfpTpvMHm1B8' },
+            { id: 5, title: 'The Sky Gallery', category: 'food', icon: '🌅', desc: '超美海景網美餐廳', link: 'https://maps.app.goo.gl/5d8nu8FkGwPgEyWr7' },
+            { id: 6, title: 'The Forest by The Sky', category: 'food', icon: '🌳', desc: '森林系漂亮餐廳', link: 'https://maps.app.goo.gl/aPs9DVNo2ee7YHVeA' }
+        ];
+
+        // --- State Management ---
+        let currentDayId = 1;
+        let currentFilter = 'all';
+        let checklistState = JSON.parse(localStorage.getItem('pattayaChecklist')) || {};
+
+        // --- Core Functions ---
+
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = '';
+
+            checklistData.forEach(item => {
+                const isChecked = checklistState[item.id] || false;
+                
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-4 ${isChecked ? 'bg-slate-100 border-slate-200 opacity-70' : 'bg-white border-sky-100 hover:border-sky-300 shadow-sm'}`;
+                
+                // Toggle state on click
+                card.onclick = (e) => {
+                    // Prevent toggling if clicked on the external link
+                    if(e.target.tagName.toLowerCase() === 'a') return;
+                    checklistState[item.id] = !checklistState[item.id];
+                    localStorage.setItem('pattayaChecklist', JSON.stringify(checklistState));
+                    renderChecklist();
+                };
+
+                const checkboxHtml = isChecked 
+                    ? `<div class="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0 mt-1"><span class="text-white text-xs">✓</span></div>`
+                    : `<div class="w-6 h-6 rounded-full border-2 border-slate-300 flex-shrink-0 mt-1"></div>`;
+
+                let linkHtml = '';
+                if(item.link) {
+                    linkHtml = `<a href="${item.link}" target="_blank" class="mt-2 text-xs text-sky-600 hover:text-sky-800 underline block" onclick="event.stopPropagation();">👉 前往網站</a>`;
+                }
+
+                card.innerHTML = `
+                    ${checkboxHtml}
+                    <div>
+                        <h3 class="font-bold ${isChecked ? 'line-through text-slate-500' : 'text-slate-800'}">${item.icon} ${item.title}</h3>
+                        <p class="text-sm text-slate-500 mt-1">${item.desc}</p>
+                        ${linkHtml}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderTabs() {
+            const container = document.getElementById('day-tabs');
+            container.innerHTML = '';
+
+            itineraryData.forEach(day => {
+                const isSelected = day.id === currentDayId;
+                const btn = document.createElement('button');
+                btn.className = `flex-shrink-0 px-5 py-3 rounded-xl text-sm font-bold transition-all ${isSelected ? 'bg-sky-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'}`;
+                btn.innerHTML = `<div>${day.title}</div><div class="text-xs font-normal opacity-80">${day.date}</div>`;
+                btn.onclick = () => {
+                    currentDayId = day.id;
+                    renderTabs();
+                    renderTimeline();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function renderTimeline() {
+            const dayData = itineraryData.find(d => d.id === currentDayId);
+            
+            document.getElementById('current-day-title').innerText = `${dayData.title}：${dayData.date}`;
+            document.getElementById('current-day-desc').innerText = dayData.subtitle;
+
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+
+            dayData.events.forEach((event, index) => {
+                const isLast = index === dayData.events.length - 1;
+                const item = document.createElement('div');
+                item.className = `timeline-line ${isLast ? 'border-transparent' : ''}`;
+                
+                item.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                        <span class="text-xs font-bold text-sky-600 bg-sky-100 px-2 py-1 rounded mb-2 inline-block">${event.time}</span>
+                        <h4 class="font-bold text-slate-800 text-lg">${event.title}</h4>
+                        ${event.desc ? `<p class="text-slate-600 text-sm mt-1 leading-relaxed">${event.desc}</p>` : ''}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function renderSpots() {
+            const container = document.getElementById('spots-grid');
+            container.innerHTML = '';
+
+            const filteredSpots = currentFilter === 'all' ? spotsData : spotsData.filter(s => s.category === currentFilter);
+
+            if (filteredSpots.length === 0) {
+                container.innerHTML = '<p class="text-slate-500 col-span-2 text-center py-4">目前沒有符合的行程。</p>';
+                return;
+            }
+
+            filteredSpots.forEach(spot => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow flex flex-col h-full';
+                
+                let badgeClass = '';
+                let badgeText = '';
+                if (spot.category === 'activity') { badgeClass = 'bg-green-100 text-green-700'; badgeText = '體驗/活動'; }
+                else if (spot.category === 'nightlife') { badgeClass = 'bg-purple-100 text-purple-700'; badgeText = '娛樂/夜市'; }
+                else if (spot.category === 'food') { badgeClass = 'bg-orange-100 text-orange-700'; badgeText = '美景/餐廳'; }
+
+                card.innerHTML = `
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-3xl">${spot.icon}</span>
+                            <span class="text-xs font-bold px-2 py-1 rounded ${badgeClass}">${badgeText}</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">${spot.title}</h3>
+                        <p class="text-sm text-slate-500 mt-2">${spot.desc}</p>
+                    </div>
+                    <a href="${spot.link}" target="_blank" class="mt-4 w-full block text-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 rounded-lg text-sm transition-colors">
+                        📍 查看 Google Maps
+                    </a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function initFilterButtons() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.onclick = () => {
+                    // Update active styling
+                    buttons.forEach(b => {
+                        b.classList.remove('bg-slate-800', 'text-white', 'shadow-sm');
+                        b.classList.add('bg-white', 'text-slate-600');
+                    });
+                    btn.classList.add('bg-slate-800', 'text-white', 'shadow-sm');
+                    btn.classList.remove('bg-white', 'text-slate-600');
+
+                    // Apply filter
+                    currentFilter = btn.getAttribute('data-filter');
+                    renderSpots();
+                };
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('vibeChart').getContext('2d');
+            
+            // Chart.js global defaults for aesthetic
+            Chart.defaults.font.family = "'Noto Sans TC', sans-serif";
+            Chart.defaults.color = '#64748b'; // slate-500
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Day 1 (安頓/海灘)', 'Day 2 (鱷魚/土嗨)', 'Day 3 (鬆一下/派對)', 'Day 4 (Free Style)', 'Day 5 (賦歸)'],
+                    datasets: [
+                        {
+                            label: '💦 戰鬥/派對指數',
+                            data: [90, 85, 80, 50, 20],
+                            backgroundColor: 'rgba(14, 165, 233, 0.2)', // sky-500
+                            borderColor: 'rgba(14, 165, 233, 1)',
+                            pointBackgroundColor: 'rgba(14, 165, 233, 1)',
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: '🛋️ Chill/耍廢指數',
+                            data: [30, 40, 70, 100, 80],
+                            backgroundColor: 'rgba(20, 184, 166, 0.2)', // teal-500
+                            borderColor: 'rgba(20, 184, 166, 1)',
+                            pointBackgroundColor: 'rgba(20, 184, 166, 1)',
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(226, 232, 240, 0.8)' }, // slate-200
+                            grid: { color: 'rgba(226, 232, 240, 0.8)' },
+                            pointLabels: {
+                                font: { size: 12, weight: 'bold' },
+                                color: '#475569' // slate-600
+                            },
+                            ticks: { display: false, min: 0, max: 100 }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { usePointStyle: true, padding: 20 }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)', // slate-900
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    // Use specific wrapping/logic if needed, here just format nicely
+                                    return ` ${context.dataset.label}: ${context.formattedValue}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChecklist();
+            renderTabs();
+            renderTimeline();
+            renderSpots();
+            initFilterButtons();
+            initChart();
+        });
+
+    </script>
+</body>
+</html>
