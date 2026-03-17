@@ -200,17 +200,17 @@
                 id: 2, date: '4/17 (五)', title: 'Day 2', subtitle: '鱷魚、土嗨與大廚上菜',
                 events: [
                     { time: '中午', title: '🍽️ 隨性午餐', desc: 'Timmy 大廚下廚或叫 Grab 外送。' },
-                    { time: '下午', title: '🐊 看鱷魚咬人 / 🔫 打靶', desc: '建議 15:00 前抵達鱷魚秀。想打靶的也可在此時安插。' },
-                    { time: '晚餐', title: '🍲 預定餐廳聚餐', desc: '享用美食，結束後回住宿 QK 充個電。' },
-                    { time: '深夜', title: '🪩 Area 39 土嗨吧', desc: '體驗最道地的泰國土嗨文化！' }
+                    { time: '下午', title: '🐊 看鱷魚咬人 / 🔫 打靶', desc: '建議 15:00 前抵達鱷魚秀。想打靶的也可在此時安插。', link: 'https://maps.app.goo.gl/o57u4dRxN3NPrvw19' },
+                    { time: '晚餐', title: '🍲 預定餐廳聚餐', desc: '享用美食，結束後回住宿 QK 充個電。', link: 'https://maps.app.goo.gl/1MNYkRoUfmnK1qSJ8' },
+                    { time: '深夜', title: '🪩 Area 39 土嗨吧', desc: '體驗最道地的泰國土嗨文化！', link: 'https://maps.app.goo.gl/Jw3WWRZUpwnwWLTQA' }
                 ]
             },
             {
                 id: 3, date: '4/18 (六)', title: 'Day 3', subtitle: '鬆一下與夜生活',
                 events: [
-                    { time: '下午', title: '💆‍♂️ 泰式馬殺雞', desc: '回血時間，舒緩前兩天的疲勞。' },
-                    { time: '夜晚', title: '🎵 The Stone House', desc: '聽歌喝酒 Chill 一下。' },
-                    { time: '深夜', title: '🍸 Midnight Club', desc: '芭達雅夜生活體驗。' }
+                    { time: '下午', title: '💆‍♂️ 泰式馬殺雞', desc: '回血時間，舒緩前兩天的疲勞。', link: 'https://maps.app.goo.gl/xT5bJrvvu1Wa6S6F9' },
+                    { time: '夜晚', title: '🎵 The Stone House', desc: '聽歌喝酒 Chill 一下。', link: 'https://maps.app.goo.gl/QD4UwCPJvznVM4Ym9' },
+                    { time: '深夜', title: '🍸 Midnight Club', desc: '芭達雅夜生活體驗。', link: 'https://maps.app.goo.gl/UwnuYrpkFsCCDqgA7' }
                 ]
             },
             {
@@ -316,12 +316,18 @@
                 const item = document.createElement('div');
                 item.className = `timeline-line ${isLast ? 'border-transparent' : ''}`;
                 
+                let linkHtml = '';
+                if (event.link) {
+                    linkHtml = `<a href="${event.link}" target="_blank" class="mt-3 inline-block text-xs font-medium text-sky-600 bg-sky-50 hover:bg-sky-100 px-3 py-1.5 rounded-lg transition-colors">📍 Google Maps</a>`;
+                }
+
                 item.innerHTML = `
                     <div class="timeline-dot"></div>
                     <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
                         <span class="text-xs font-bold text-sky-600 bg-sky-100 px-2 py-1 rounded mb-2 inline-block">${event.time}</span>
                         <h4 class="font-bold text-slate-800 text-lg">${event.title}</h4>
                         ${event.desc ? `<p class="text-slate-600 text-sm mt-1 leading-relaxed">${event.desc}</p>` : ''}
+                        ${linkHtml}
                     </div>
                 `;
                 container.appendChild(item);
