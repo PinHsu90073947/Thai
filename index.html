@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇹🇭 芭達雅潑水節 Chill 遊指南 💦 (更新版)</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>🇹🇭 芭達雅潑水節 Chill 遊指南 💦 (最新版)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
+            background-color: #f8fafc;
         }
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
@@ -55,8 +58,8 @@
 
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="font-black text-xl text-sky-600 tracking-wide">🇹🇭 Pattaya 2024</div>
-            <div class="text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">更新版行程</div>
+            <div class="font-black text-xl text-sky-600 tracking-wide">🇹🇭 Pattaya 2026</div>
+            <div class="text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">最新版行程</div>
         </div>
     </nav>
 
@@ -79,7 +82,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="checklist-container">
-                </div>
+            </div>
         </section>
 
         <section id="chart-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
@@ -99,7 +102,7 @@
             </div>
 
             <div class="flex overflow-x-auto hide-scrollbar gap-2 border-b-2 border-slate-100 pb-3 mb-6" id="day-tabs">
-                </div>
+            </div>
 
             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 md:p-8">
                 <div id="timeline-header" class="mb-8 border-b border-slate-100 pb-4">
@@ -107,7 +110,7 @@
                     <p class="text-slate-500 font-medium mt-1" id="current-day-desc"></p>
                 </div>
                 <div id="timeline-container" class="ml-2">
-                    </div>
+                </div>
             </div>
         </section>
 
@@ -124,13 +127,12 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="spots-grid">
-                </div>
+            </div>
         </section>
 
     </main>
 
     <script>
-        // --- Data ---
         const checklistData = [
             { id: 'c_cash', icon: '💰', title: '兩萬台幣等值現金', desc: '海關可能會抽查財力，務必準備。' },
             { id: 'c_card', icon: '📄', title: '線上入境卡', desc: '出發前兩天填寫完畢。', link: 'https://tdac.immigration.go.th/arrival-card/#/home', linkText: '👉 點此填寫' },
@@ -176,7 +178,7 @@
                 ]
             },
             {
-                id: 4, date: '4/19 (日)', title: 'Day 4', title: 'Day 4', subtitle: '森林系餐廳與逛街',
+                id: 4, date: '4/19 (日)', title: 'Day 4', subtitle: '森林系餐廳與逛街',
                 events: [
                     { time: '白天', title: '🌳 The Forest by The Sky', desc: '森林系絕美餐廳。', link: 'https://maps.app.goo.gl/aPs9DVNo2ee7YHVeA' },
                     { time: '下午', title: '🛍️ Terminal 21', desc: '吃東西加購物，旁邊還有小市集可以逛。', link: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9' },
@@ -186,7 +188,7 @@
             {
                 id: 5, date: '4/20 (一)', title: 'Day 5', subtitle: '最後衝刺與賦歸',
                 events: [
-                    { time: '上午', title: '🧳 退房 & 寄放行李', desc: '行李可以放女友家（如果沒分手的話 🤣）。' },
+                    { time: '下午', title: '🧳 退房 & 寄放行李', desc: '下午退房後，行李可以放我女友家 (沒意外的話 🤣)。' },
                     { time: '午/晚餐', title: '🍲 火鍋吃到飽', desc: '離開前的豐盛大餐。', link: 'https://maps.app.goo.gl/v3sz3vafn18BFfKt6' },
                     { time: '21:00', title: '🚐 前往機場', desc: '從芭達雅搭車前往機場準備回台，結束完美旅程！' }
                 ]
@@ -201,9 +203,7 @@
 
         let currentDayId = 1;
         let currentFilter = 'all';
-        let checklistState = JSON.parse(localStorage.getItem('pattayaChecklistV2')) || {};
-
-        // --- Render Functions ---
+        let checklistState = JSON.parse(localStorage.getItem('pattayaChecklistV3')) || {};
 
         function renderChecklist() {
             const container = document.getElementById('checklist-container');
@@ -216,7 +216,7 @@
                 card.onclick = (e) => {
                     if(e.target.tagName.toLowerCase() === 'a') return;
                     checklistState[item.id] = !checklistState[item.id];
-                    localStorage.setItem('pattayaChecklistV2', JSON.stringify(checklistState));
+                    localStorage.setItem('pattayaChecklistV3', JSON.stringify(checklistState));
                     renderChecklist();
                 };
 
@@ -356,7 +356,6 @@
             const ctx = document.getElementById('vibeChart').getContext('2d');
             Chart.defaults.font.family = "'Noto Sans TC', sans-serif";
             
-            // Updated values based on the fuller itinerary
             new Chart(ctx, {
                 type: 'radar',
                 data: {
@@ -401,7 +400,6 @@
             });
         }
 
-        // --- Init ---
         document.addEventListener('DOMContentLoaded', () => {
             renderChecklist();
             renderTabs();
