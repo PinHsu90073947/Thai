@@ -6,13 +6,12 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>🇹🇭 Pattaya Songkran Chill Guide 💦</title>
+    <title>🇹🇭 Pattaya Songkran Chill Guide 💦 (V5 Update)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            /* Support both Chinese and Thai fonts gracefully */
             font-family: 'Noto Sans TC', 'Sarabun', sans-serif;
             background-color: #f8fafc;
         }
@@ -54,7 +53,7 @@
 
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="font-black text-xl text-sky-600 tracking-wide">🇹🇭 Pattaya 2026</div>
+            <div class="font-black text-xl text-sky-600 tracking-wide">🇹🇭 Pattaya 2026 4/16~4/20</div>
             <button id="langToggle" class="text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-full border border-slate-200 transition-colors flex items-center gap-1">
                 🇹🇼 中文 / 🇹🇭 ไทย
             </button>
@@ -74,15 +73,56 @@
             </div>
         </section>
 
+        <section id="info-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="mb-5">
+                <h2 class="text-2xl font-black flex items-center gap-2">ℹ️ <span data-i18n="infoTitle">實用資訊與安全</span></h2>
+                <p class="text-slate-500 text-sm mt-1" data-i18n="infoSub">住宿、緊急聯絡人與退稅相關規定</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl">
+                    <h3 class="font-bold text-sky-800 mb-2" data-i18n="villaTitle">🏡 住宿地點 (Villa)</h3>
+                    <p class="text-sm text-sky-900 font-medium">Pattaya Happy house By Star Elite</p>
+                    <a href="https://maps.app.goo.gl/bRDVHMqZLvkExR9BA" target="_blank" class="mt-2 inline-block text-xs font-bold text-sky-600 bg-white border border-sky-200 px-3 py-1.5 rounded-lg hover:bg-sky-100" data-i18n="mapBtn">📍 Google Maps</a>
+                </div>
+                
+                <div class="bg-red-50 border border-red-100 p-4 rounded-xl">
+                    <h3 class="font-bold text-red-800 mb-2" data-i18n="emTitle">🆘 緊急聯絡</h3>
+                    <div class="space-y-2">
+                        <div class="text-sm text-red-900 flex justify-between items-center">
+                            <span class="font-medium">Lean</span>
+                            <div class="flex gap-2">
+                                <a href="tel:0925459494" class="text-xs font-bold bg-white border border-red-200 text-red-600 px-2 py-1 rounded hover:bg-red-100">📞 0925459494</a>
+                                <a href="https://maps.app.goo.gl/axXzzi5Cj6nPdhbX6" target="_blank" class="text-xs font-bold bg-white border border-red-200 text-red-600 px-2 py-1 rounded hover:bg-red-100" data-i18n="emMap">📍 位置</a>
+                            </div>
+                        </div>
+                        <div class="text-sm text-red-900 flex justify-between items-center pt-2 border-t border-red-200/50">
+                            <span class="font-medium" data-i18n="emPolice">觀光警察 1155</span>
+                            <a href="tel:1155" class="text-xs font-bold bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700">📞 1155</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50 border border-teal-100 p-4 rounded-xl">
+                    <h3 class="font-bold text-teal-800 mb-2" data-i18n="safeTitle">🛡️ 安全守則</h3>
+                    <p class="text-sm text-teal-900 leading-relaxed" data-i18n="safeMap">出門請開啟 <b>Google Map 定位分享</b>，隨時與群組保持聯絡。觀光警察專線 1155 曼谷外請用市話撥打。</p>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-100 p-4 rounded-xl">
+                    <h3 class="font-bold text-amber-800 mb-2" data-i18n="taxTitle">💸 退稅服務 (VAT Refund)</h3>
+                    <p class="text-sm text-amber-900 leading-relaxed" data-i18n="taxDesc">認明 "VAT REFUND" 標示商店（如 Big C），單筆滿 ฿2,000 可拿退稅單。回程需<b>提前一小時</b>至機場辦理，物品請隨身以備查驗。</p>
+                </div>
+            </div>
+        </section>
+
         <section id="checklist-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
             <div class="mb-5">
                 <h2 class="text-2xl font-black flex items-center gap-2">
                     🎒 <span data-i18n="checkTitle">行前與生存必備</span> 
                     <span class="text-xs font-normal text-slate-500 bg-slate-100 px-2 py-1 rounded cursor-default" data-i18n="checkBadge">點擊打卡</span>
                 </h2>
-                <p class="text-slate-500 text-sm mt-1" data-i18n="checkSub">出發前請確認完成以下準備。泰國交通必備 App 也請先載好！</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4" id="checklist-container"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="checklist-container"></div>
         </section>
 
         <section id="chart-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
@@ -126,12 +166,16 @@
     </main>
 
     <script>
-        // --- Translations Dictionary for Static UI ---
+        // --- Translations Dictionary ---
         const uiTranslations = {
             zh: {
                 title1: "芭達雅潑水節", title2: "五天四夜 Chill 遊指南",
                 ruleTitle: "本團最高指導原則", ruleDesc: "大家出遊請自由自在，不用太客氣，想去哪就去哪！",
-                checkTitle: "行前與生存必備", checkBadge: "點擊打卡", checkSub: "出發前請確認完成以下準備。泰國交通必備 App 也請先載好！",
+                infoTitle: "實用資訊與安全", infoSub: "住宿、緊急聯絡人與退稅相關規定",
+                villaTitle: "🏡 住宿地點 (Villa)", emTitle: "🆘 緊急聯絡", emMap: "📍 位置", emPolice: "觀光警察 1155",
+                safeTitle: "🛡️ 安全守則", safeMap: "出門請開啟 <b>Google Map 定位分享</b>，隨時與群組保持聯絡。觀光警察專線 1155 曼谷外請用市話撥打。",
+                taxTitle: "💸 退稅服務 (VAT Refund)", taxDesc: "認明 \"VAT REFUND\" 標示商店（如 Big C），單筆滿 ฿2,000 可拿退稅單。回程需<b>提前一小時</b>至機場辦理，物品請隨身以備查驗。",
+                checkTitle: "行前與生存必備", checkBadge: "點擊打卡",
                 chartTitle: "每日行程 Vibe 預測", chartSub: "行程排滿滿，哪天要保留體力一目瞭然！",
                 itinTitle: "每日行程總覽", itinSub: "點擊日期切換，附帶導航連結與花費預估。",
                 spotTitle: "備用行程與美食（Free Style）", spotSub: "想出門走走或肚子餓？從這邊挑選，隨時出發！",
@@ -142,7 +186,11 @@
             th: {
                 title1: "เทศกาลสงกรานต์พัทยา", title2: "คู่มือเที่ยวชิลๆ 5 วัน 4 คืน",
                 ruleTitle: "กฎเหล็กของทริปนี้", ruleDesc: "เที่ยวให้สนุก ทำตัวตามสบาย ไม่ต้องเกรงใจ อยากไปไหนก็ไป!",
-                checkTitle: "สิ่งที่ต้องเตรียมก่อนเดินทาง", checkBadge: "คลิกเพื่อเช็คอิน", checkSub: "เตรียมตัวให้พร้อมก่อนออกเดินทาง และอย่าลืมโหลดแอปที่จำเป็น!",
+                infoTitle: "ข้อมูลที่เป็นประโยชน์ & ความปลอดภัย", infoSub: "ที่พัก ผู้ติดต่อฉุกเฉิน และกฎการคืนภาษี",
+                villaTitle: "🏡 ที่พัก (วิลล่า)", emTitle: "🆘 ติดต่อฉุกเฉิน", emMap: "📍 แผนที่", emPolice: "ตำรวจท่องเที่ยว 1155",
+                safeTitle: "🛡️ ความปลอดภัย", safeMap: "เปิดแชร์โลเคชั่น <b>Google Map</b> เสมอ ตำรวจท่องเที่ยวโทร 1155 (นอกกรุงเทพฯ ใช้เบอร์บ้านโทร)",
+                taxTitle: "💸 การคืนภาษี (VAT Refund)", taxDesc: "ซื้อครบ ฿2,000 ในร้านที่มีป้าย (เช่น Big C) ขอใบกำกับภาษีได้ ต้องไปสนามบินล่วงหน้า <b>1 ชม.</b> เพื่อทำเรื่อง",
+                checkTitle: "สิ่งที่ต้องเตรียมก่อนเดินทาง", checkBadge: "คลิกเพื่อเช็คอิน",
                 chartTitle: "คาดการณ์ Vibe แต่ละวัน", chartSub: "ดูกราฟแล้วแพลนพลังงานในแต่ละวันได้เลย!",
                 itinTitle: "ภาพรวมแผนการเดินทาง", itinSub: "คลิกเลือกวันเพื่อดูรายละเอียดแผนที่และงบประมาณ",
                 spotTitle: "แผนสำรอง & ของกิน (Free Style)", spotSub: "ถ้าอยากออกไปเดินเล่นหรือหาอะไรกิน เลือกจากตรงนี้ได้เลย!",
@@ -154,28 +202,18 @@
 
         // --- Multi-language Data Sources ---
         const checklistData = [
-            { id: 'c_cash', icon: '💰', 
-              title: { zh: '兩萬台幣等值現金', th: 'เงินสดเทียบเท่า 20,000 NTD' }, 
-              desc: { zh: '海關可能會抽查財力，務必準備。', th: 'ตม.ไทยอาจสุ่มตรวจเงินสด แนะนำให้เตรียมมา' } },
-            { id: 'c_card', icon: '📄', 
-              title: { zh: '線上入境卡', th: 'ใบตม. ออนไลน์' }, 
-              desc: { zh: '出發前兩天填寫完畢。', th: 'กรอกให้เรียบร้อยก่อนเดินทาง 2 วัน' }, 
-              link: 'https://tdac.immigration.go.th/arrival-card/#/home' },
-            { id: 'c_gear', icon: '🎒', 
-              title: { zh: '戰鬥裝備', th: 'อุปกรณ์รบ (สงกรานต์)' }, 
-              desc: { zh: '防水包、手機防水套、墨鏡、帽子、防曬用品。', th: 'กระเป๋ากันน้ำ ซองกันน้ำโทรศัพท์ แว่นตากันแดด หมวก ครีมกันแดด' } },
-            { id: 'c_bolt', icon: '🚕', 
-              title: { zh: '下載 Bolt App (叫車)', th: 'โหลดแอป Bolt (เรียกรถ)' }, 
-              desc: { zh: '芭達雅最好叫！機車11km約฿33，汽車5km約฿100。', th: 'เรียกง่ายสุดในพัทยา! มอเตอร์ไซค์ 11 กม. ~33 บ. รถยนต์ 5 กม. ~100 บ.' } },
-            { id: 'c_grab', icon: '🛵', 
-              title: { zh: '下載 Grab App (叫外送)', th: 'โหลดแอป Grab (สั่งอาหาร)' }, 
-              desc: { zh: '雖然也能叫車，但在芭達雅主要用來叫食物。', th: 'ถึงจะเรียกรถได้ แต่ในพัทยาส่วนใหญ่ใช้สั่งอาหาร' } }
+            { id: 'c_cash', icon: '💰', title: { zh: '兩萬台幣等值現金', th: 'เงินสดเทียบเท่า 20,000 NTD' }, desc: { zh: '海關可能會抽查財力，務必準備。', th: 'ตม.ไทยอาจสุ่มตรวจเงินสด แนะนำให้เตรียมมา' } },
+            { id: 'c_card', icon: '📄', title: { zh: '線上入境卡', th: 'ใบตม. ออนไลน์' }, desc: { zh: '出發前兩天填寫完畢。', th: 'กรอกให้เรียบร้อยก่อนเดินทาง 2 วัน' }, link: 'https://tdac.immigration.go.th/arrival-card/#/home' },
+            { id: 'c_net', icon: '📶', title: { zh: '準備無線網路', th: 'เตรียมอินเทอร์เน็ต' }, desc: { zh: '提早買好 eSim 或實體網卡。', th: 'ซื้อ eSim หรือซิมการ์ดให้เรียบร้อย' } },
+            { id: 'c_van', icon: '🚐', title: { zh: '確認包車資訊', th: 'คอนเฟิร์มรถตู้' }, desc: { zh: '確認前往 Villa 的車費及接送時間。', th: 'คอนเฟิร์มค่ารถและเวลารับส่งไปวิลล่า' } },
+            { id: 'c_gear', icon: '🎒', title: { zh: '戰鬥裝備', th: 'อุปกรณ์รบ (สงกรานต์)' }, desc: { zh: '防水包、手機防水套、墨鏡、帽子、防曬用品。', th: 'กระเป๋ากันน้ำ ซองกันน้ำโทรศัพท์ แว่นตากันแดด หมวก ครีมกันแดด' } },
+            { id: 'c_bolt', icon: '🚕', title: { zh: '下載 Bolt App (叫車)', th: 'โหลดแอป Bolt (เรียกรถ)' }, desc: { zh: '機車11km約฿33，汽車5km約฿100。', th: 'มอเตอร์ไซค์ 11 กม. ~33 บ. รถยนต์ 5 กม. ~100 บ.' } },
+            { id: 'c_grab', icon: '🛵', title: { zh: '下載 Grab App (外送)', th: 'โหลดแอป Grab (สั่งอาหาร)' }, desc: { zh: '主要用來叫食物。', th: 'ในพัทยาส่วนใหญ่ใช้สั่งอาหาร' } }
         ];
 
         const itineraryData = [
             {
-                id: 1, date: { zh: '4/16 (四)', th: '16 เม.ย. (พฤ.)' }, 
-                title: 'Day 1', 
+                id: 1, date: { zh: '4/16 (四)', th: '16 เม.ย. (พฤ.)' }, title: 'Day 1', 
                 subtitle: { zh: '入境安頓與潑水開戰', th: 'เดินทางถึง & เริ่มสาดน้ำ' },
                 budget: { zh: '預估開銷：車費 ฿400 / 晚餐 ฿400 / 雜支 ฿300', th: 'งบประมาณ: ค่ารถ ฿400 / อาหารเย็น ฿400 / อื่นๆ ฿300' },
                 events: [
@@ -183,15 +221,14 @@
                     { time: '13:05', title: { zh: '🛬 抵達曼谷機場', th: '🛬 ถึงสนามบินกรุงเทพฯ' }, desc: { zh: '', th: '' } },
                     { time: '14:30', title: { zh: '🛂 通關入境', th: '🛂 ผ่านตม.' }, desc: { zh: '預期人潮眾多，請耐心等候。', th: 'คนอาจจะเยอะ รอนิดนึงนะ' } },
                     { time: '15:00', title: { zh: '🚐 前往芭達雅', th: '🚐 เดินทางไปพัทยา' }, desc: { zh: '搭車前往芭達雅。', th: 'นั่งรถมุ่งหน้าสู่พัทยา' } },
-                    { time: '17:00', title: { zh: '🏡 入住 Villa & 換錢', th: '🏡 เช็คอิน Villa & แลกเงิน' }, desc: { zh: '安頓後，可派代表去 Terminal 21 或 Big C 換泰銖。', th: 'เก็บของแล้วส่งตัวแทนไปแลกเงินที่ Terminal 21 หรือ Big C' } },
+                    { time: '17:00', title: { zh: '🏡 入住 Villa & 換錢', th: '🏡 เช็คอิน Villa & แลกเงิน' }, desc: { zh: '可派代表去 Terminal 21 的 SuperRich 換泰銖（先換兩萬，之後需要再換）。', th: 'ส่งตัวแทนไปแลกเงินที่ SuperRich ใน Terminal 21' } },
                     { time: 'Dinner', title: { zh: '🍲 泰式火鍋/泰國蝦吃到飽', th: '🍲 หมูกระทะ/กุ้งเผาบุฟเฟ่ต์' }, desc: { zh: '一個人大概 400 泰銖。', th: 'คนละประมาณ 400 บาท' }, link: 'https://maps.app.goo.gl/ZicXtdspCRDscCoZ9' },
                     { time: 'Night', title: { zh: '🌊 海灘街潑水節狂歡', th: '🌊 เล่นน้ำสงกรานต์ถนนเลียบหาด' }, desc: { zh: '從 Terminal 21 走到 Walking Street 入口，準備濕身！', th: 'เดินจาก Terminal 21 ไปจนถึงทางเข้า Walking Street เตรียมตัวเปียก!' }, links: [{name: 'Terminal 21', url: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9'}, {name: 'Walking Street', url: 'https://maps.app.goo.gl/ZS2A9mxanLhUoMi99'}] },
                     { time: 'Late', title: { zh: '🍻 買啤酒、麻回住宿', th: '🍻 ซื้อเบียร์ & กัญชา กลับที่พัก' }, desc: { zh: '回 Villa 繼續桑。', th: 'กลับไปชิลต่อที่วิลล่า' } }
                 ]
             },
             {
-                id: 2, date: { zh: '4/17 (五)', th: '17 เม.ย. (ศ.)' }, 
-                title: 'Day 2', 
+                id: 2, date: { zh: '4/17 (五)', th: '17 เม.ย. (ศ.)' }, title: 'Day 2', 
                 subtitle: { zh: '動物農場、土嗨大挑戰', th: 'สวนสัตว์ & ผับท้องถิ่น' },
                 events: [
                     { time: 'Noon', title: { zh: '🍽️ 隨性午餐', th: '🍽️ มื้อเที่ยงชิลๆ' }, desc: { zh: '交給 Timmy 大廚下廚，或是叫 Grab 外送。', th: 'เชฟ Timmy ทำอาหารให้กิน หรือไม่ก็สั่ง Grab' } },
@@ -202,8 +239,7 @@
                 ]
             },
             {
-                id: 3, date: { zh: '4/18 (六)', th: '18 เม.ย. (ส.)' }, 
-                title: 'Day 3', 
+                id: 3, date: { zh: '4/18 (六)', th: '18 เม.ย. (ส.)' }, title: 'Day 3', 
                 subtitle: { zh: '海景、市集與夜生活', th: 'วิวทะเล ตลาด & ไนท์ไลฟ์' },
                 events: [
                     { time: 'Lunch', title: { zh: '🌅 The Sky Gallery', th: '🌅 The Sky Gallery' }, desc: { zh: '絕美海景網美餐廳。', th: 'ร้านอาหารวิวทะเล ถ่ายรูปสวยมาก' }, link: 'https://maps.app.goo.gl/5d8nu8FkGwPgEyWr7' },
@@ -215,21 +251,20 @@
                 ]
             },
             {
-                id: 4, date: { zh: '4/19 (日)', th: '19 เม.ย. (อา.)' }, 
-                title: 'Day 4', 
+                id: 4, date: { zh: '4/19 (日)', th: '19 เม.ย. (อา.)' }, title: 'Day 4', 
                 subtitle: { zh: '森林系餐廳與逛街', th: 'คาเฟ่ป่า & ช้อปปิ้ง' },
                 events: [
                     { time: 'Day', title: { zh: '🌳 The Forest by The Sky', th: '🌳 The Forest by The Sky' }, desc: { zh: '森林系絕美餐廳。', th: 'ร้านอาหารสไตล์ป่า สวยมาก' }, link: 'https://maps.app.goo.gl/aPs9DVNo2ee7YHVeA' },
                     { time: 'Afternoon', title: { zh: '🛍️ Terminal 21', th: '🛍️ Terminal 21' }, desc: { zh: '吃東西加購物，旁邊還有小市集可以逛。', th: 'กินข้าว ช้อปปิ้ง มีตลาดนัดเล็กๆ ข้างๆ ด้วย' }, link: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9' },
-                    { time: 'Night', title: { zh: '🍢 Thepprasit 夜市', th: '🍢 ตลาดเทพประสิทธิ์' }, desc: { zh: '芭達雅週末必逛夜市！', th: 'ตลาดนัดสุดสัปดาห์พัทยาที่ต้องไป!' }, link: 'https://maps.app.goo.gl/eHPjicfpTpvMHm1B8' }
+                    { time: 'Night', title: { zh: '🍢 Thepprasit 夜市', th: '🍢 ตลาดเทพประสิทธิ์' }, desc: { zh: '芭達雅週末必逛夜市！', th: 'ตลาดนัดสุดสัปดาห์พัทยาที่ต้องไป!' }, link: 'https://maps.app.goo.gl/eHPjicfpTpvMHm1B8' },
+                    { time: '21:00', label: { zh: '特別班次', th: 'เที่ยวพิเศษ' }, title: { zh: '🚐 Evan 提前前往機場', th: '🚐 Evan ไปสนามบินล่วงหน้า' }, desc: { zh: 'Evan 和女友搭車回素萬那普機場（費用 ฿1000），等凌晨班機回台。', th: 'Evan และแฟนเหมากลับสนามบินสุวรรณภูมิ (฿1000) รอไฟลท์เช้ามืด' } }
                 ]
             },
             {
-                id: 5, date: { zh: '4/20 (一)', th: '20 เม.ย. (จ.)' }, 
-                title: 'Day 5', 
+                id: 5, date: { zh: '4/20 (一)', th: '20 เม.ย. (จ.)' }, title: 'Day 5', 
                 subtitle: { zh: '最後衝刺與賦歸', th: 'วันสุดท้าย & เดินทางกลับ' },
                 events: [
-                    { time: 'Afternoon', title: { zh: '🧳 退房 & 寄放行李', th: '🧳 เช็คเอาท์ & ฝากกระเป๋า' }, desc: { zh: '下午退房後，行李可以放我女友家 (沒意外的話)。', th: 'เช็คเอาท์ตอนบ่าย เอากระเป๋าไปฝากบ้านแฟนผม' } },
+                    { time: 'Afternoon', title: { zh: '🧳 退房 & 寄放行李', th: '🧳 เช็คเอาท์ & ฝากกระเป๋า' }, desc: { zh: '下午退房後，行李可以放我女友家。', th: 'เช็คเอาท์ตอนบ่าย เอากระเป๋าไปฝากบ้านแฟนผมได้' } },
                     { time: 'Dinner', title: { zh: '🍲 火鍋吃到飽', th: '🍲 ชาบูบุฟเฟ่ต์' }, desc: { zh: '離開前的豐盛大餐。', th: 'มื้อใหญ่ก่อนกลับ' }, link: 'https://maps.app.goo.gl/v3sz3vafn18BFfKt6' },
                     { time: '21:00', title: { zh: '🚐 前往機場', th: '🚐 เดินทางไปสนามบิน' }, desc: { zh: '從芭達雅搭車前往機場準備回台，結束完美旅程！', th: 'นั่งรถจากพัทยาไปสนามบินเพื่อบินกลับไต้หวัน จบทริปอย่างสมบูรณ์!' } }
                 ]
@@ -237,25 +272,19 @@
         ];
 
         const spotsData = [
-            { category: 'activity', icon: '🏝️', 
-              title: { zh: '小珊瑚島一日遊', th: 'เกาะล้าน 1 วัน' }, 
-              desc: { zh: '搭船去小島租機車玩水。', th: 'นั่งเรือไปเกาะ เช่ามอเตอร์ไซค์เล่นน้ำ' }, link: 'https://maps.app.goo.gl/G3KwiRnmDSxrR3ta7' },
-            { category: 'activity', icon: '🔞', 
-              title: { zh: '99 Show Pattaya', th: '99 Show Pattaya' }, 
-              desc: { zh: '芭達雅經典成人秀，門票 1000 初。', th: 'โชว์ผู้ใหญ่สุดคลาสสิก ค่าเข้าพันนิดๆ' }, link: 'https://maps.app.goo.gl/mqDk1V4HRHks3kFS7' },
-            { category: 'food', icon: '🍜', 
-              title: { zh: '在地美食推薦', th: 'แนะนำของกินโลคอล' }, 
-              desc: { zh: '推薦吃「船麵」與「母病 (Moo Ping 烤豬肉串)」，路邊看到就買！', th: 'แนะนำกิน "ก๋วยเตี๋ยวเรือ" กับ "หมูปิ้ง" เจอข้างทางเมื่อไหร่ซื้อเลย!' }, link: null }
+            { category: 'activity', icon: '🏝️', title: { zh: '小珊瑚島一日遊', th: 'เกาะล้าน 1 วัน' }, desc: { zh: '搭船去小島租機車玩水。', th: 'นั่งเรือไปเกาะ เช่ามอเตอร์ไซค์เล่นน้ำ' }, link: 'https://maps.app.goo.gl/G3KwiRnmDSxrR3ta7' },
+            { category: 'activity', icon: '🔞', title: { zh: '99 Show Pattaya', th: '99 Show Pattaya' }, desc: { zh: '芭達雅經典成人秀，門票 1000 初。', th: 'โชว์ผู้ใหญ่สุดคลาสสิก ค่าเข้าพันนิดๆ' }, link: 'https://maps.app.goo.gl/mqDk1V4HRHks3kFS7' },
+            { category: 'food', icon: '🍜', title: { zh: '在地美食推薦', th: 'แนะนำของกินโลคอล' }, desc: { zh: '推薦吃「船麵」與「母病 (Moo Ping 烤豬肉串)」，路邊看到就買！', th: 'แนะนำกิน "ก๋วยเตี๋ยวเรือ" กับ "หมูปิ้ง" เจอข้างทางเมื่อไหร่ซื้อเลย!' }, link: null }
         ];
 
         // --- App State ---
         let currentLang = localStorage.getItem('pattayaLang') || 'zh';
         let currentDayId = 1;
         let currentFilter = 'all';
-        let checklistState = JSON.parse(localStorage.getItem('pattayaChecklistV4')) || {};
+        let checklistState = JSON.parse(localStorage.getItem('pattayaChecklistV5')) || {};
         let myChart = null;
 
-        // --- Language Switcher Logic ---
+        // --- Core Functions ---
         function toggleLang() {
             currentLang = currentLang === 'zh' ? 'th' : 'zh';
             localStorage.setItem('pattayaLang', currentLang);
@@ -266,12 +295,11 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (uiTranslations[currentLang][key]) {
-                    el.innerText = uiTranslations[currentLang][key];
+                    el.innerHTML = uiTranslations[currentLang][key]; // innerHTML supports <b> tags
                 }
             });
         }
 
-        // --- Render Functions ---
         function renderChecklist() {
             const container = document.getElementById('checklist-container');
             container.innerHTML = '';
@@ -285,7 +313,7 @@
                 card.onclick = (e) => {
                     if(e.target.tagName.toLowerCase() === 'a') return;
                     checklistState[item.id] = !checklistState[item.id];
-                    localStorage.setItem('pattayaChecklistV4', JSON.stringify(checklistState));
+                    localStorage.setItem('pattayaChecklistV5', JSON.stringify(checklistState));
                     renderChecklist();
                 };
 
@@ -431,17 +459,12 @@
             const ctx = document.getElementById('vibeChart').getContext('2d');
             Chart.defaults.font.family = "'Noto Sans TC', 'Sarabun', sans-serif";
             
-            if (myChart) {
-                myChart.destroy(); // Destroy previous instance to update labels properly
-            }
+            if (myChart) myChart.destroy();
             
-            // Labels can remain mostly english/numbers, but legends need translation
-            const labels = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'];
-
             myChart = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: labels,
+                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
                     datasets: [
                         {
                             label: uiTranslations[currentLang].chartLabel1,
@@ -491,7 +514,6 @@
             renderChart();
         }
 
-        // --- Init ---
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('langToggle').addEventListener('click', toggleLang);
             initFilterButtons();
