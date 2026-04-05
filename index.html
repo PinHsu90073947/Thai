@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>🇹🇭 Pattaya Songkran Chill Guide 💦 (V5 Update)</title>
+    <title>🇹🇭 Pattaya Songkran Chill Guide 💦 (V6 Update)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -47,8 +47,7 @@
             position: relative;
         }
     </style>
-    
-    </head>
+</head>
 <body class="text-slate-800 antialiased selection:bg-sky-200 pb-20">
 
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
@@ -83,22 +82,28 @@
                 <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl">
                     <h3 class="font-bold text-sky-800 mb-2" data-i18n="villaTitle">🏡 住宿地點 (Villa)</h3>
                     <p class="text-sm text-sky-900 font-medium">Pattaya Happy house By Star Elite</p>
-                    <a href="https://maps.app.goo.gl/bRDVHMqZLvkExR9BA" target="_blank" class="mt-2 inline-block text-xs font-bold text-sky-600 bg-white border border-sky-200 px-3 py-1.5 rounded-lg hover:bg-sky-100" data-i18n="mapBtn">📍 Google Maps</a>
+                    <div class="flex gap-2 mt-3 flex-wrap">
+                        <a href="https://maps.app.goo.gl/bRDVHMqZLvkExR9BA" target="_blank" class="text-xs font-bold text-sky-600 bg-white border border-sky-200 px-3 py-1.5 rounded-lg hover:bg-sky-100 transition-colors" data-i18n="mapBtn">📍 Google Maps</a>
+                        <button onclick="copyToClipboard('Pattaya Happy house By Star Elite', this)" class="text-xs font-bold text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors" data-i18n="copyBtn">📋 複製地址</button>
+                    </div>
                 </div>
                 
                 <div class="bg-red-50 border border-red-100 p-4 rounded-xl">
-                    <h3 class="font-bold text-red-800 mb-2" data-i18n="emTitle">🆘 緊急聯絡</h3>
-                    <div class="space-y-2">
-                        <div class="text-sm text-red-900 flex justify-between items-center">
-                            <span class="font-medium">Lean</span>
-                            <div class="flex gap-2">
-                                <a href="tel:0925459494" class="text-xs font-bold bg-white border border-red-200 text-red-600 px-2 py-1 rounded hover:bg-red-100">📞 0925459494</a>
-                                <a href="https://maps.app.goo.gl/axXzzi5Cj6nPdhbX6" target="_blank" class="text-xs font-bold bg-white border border-red-200 text-red-600 px-2 py-1 rounded hover:bg-red-100" data-i18n="emMap">📍 位置</a>
+                    <h3 class="font-bold text-red-800 mb-3" data-i18n="emTitle">🆘 緊急聯絡</h3>
+                    <div class="space-y-3">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-center text-sm text-red-900">
+                                <span class="font-bold">Lean</span>
+                                <a href="tel:0925459494" class="text-xs font-bold bg-white border border-red-200 text-red-600 px-3 py-1.5 rounded-lg hover:bg-red-100 transition-colors">📞 0925459494</a>
+                            </div>
+                            <div class="flex gap-2 flex-wrap">
+                                <a href="https://maps.app.goo.gl/axXzzi5Cj6nPdhbX6" target="_blank" class="text-xs font-bold bg-white border border-red-200 text-red-600 px-3 py-1.5 rounded-lg hover:bg-red-100 transition-colors" data-i18n="emMap">📍 位置</a>
+                                <button onclick="copyToClipboard('235 Sukhumvit Rd, Pattaya City, Bang Lamung District, Chon Buri 20150', this)" class="text-xs font-bold text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors" data-i18n="copyBtn">📋 複製地址</button>
                             </div>
                         </div>
-                        <div class="text-sm text-red-900 flex justify-between items-center pt-2 border-t border-red-200/50">
-                            <span class="font-medium" data-i18n="emPolice">觀光警察 1155</span>
-                            <a href="tel:1155" class="text-xs font-bold bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700">📞 1155</a>
+                        <div class="flex justify-between items-center pt-3 border-t border-red-200/50 text-sm text-red-900">
+                            <span class="font-bold" data-i18n="emPolice">觀光警察 1155</span>
+                            <a href="tel:1155" class="text-xs font-bold bg-red-600 text-white px-3 py-1.5 rounded-lg hover:bg-red-700 transition-colors">📞 1155</a>
                         </div>
                     </div>
                 </div>
@@ -118,7 +123,7 @@
         <section id="checklist-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
             <div class="mb-5">
                 <h2 class="text-2xl font-black flex items-center gap-2">
-                    🎒 <span data-i18n="checkTitle">行前與生存必備</span> 
+                    🎒 <span data-i18n="checkTitle">行前檢查</span> 
                     <span class="text-xs font-normal text-slate-500 bg-slate-100 px-2 py-1 rounded cursor-default" data-i18n="checkBadge">點擊打卡</span>
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4" id="checklist-container"></div>
@@ -175,12 +180,13 @@
                 villaTitle: "🏡 住宿地點 (Villa)", emTitle: "🆘 緊急聯絡", emMap: "📍 位置", emPolice: "觀光警察 1155",
                 safeTitle: "🛡️ 安全守則", safeMap: "出門請開啟 <b>Google Map 定位分享</b>，隨時與群組保持聯絡。觀光警察專線 1155 曼谷外請用市話撥打。",
                 taxTitle: "💸 退稅服務 (VAT Refund)", taxDesc: "認明 \"VAT REFUND\" 標示商店（如 Big C），單筆滿 ฿2,000 可拿退稅單。回程需<b>提前一小時</b>至機場辦理，物品請隨身以備查驗。",
-                checkTitle: "行前與生存必備", checkBadge: "點擊打卡",
+                checkTitle: "行前檢查", checkBadge: "點擊打卡", // Updated requirement
                 chartTitle: "每日行程 Vibe 預測", chartSub: "行程排滿滿，哪天要保留體力一目瞭然！",
                 itinTitle: "每日行程總覽", itinSub: "點擊日期切換，附帶導航連結與花費預估。",
                 spotTitle: "備用行程與美食（Free Style）", spotSub: "想出門走走或肚子餓？從這邊挑選，隨時出發！",
                 filterAll: "全部", filterAct: "體驗/活動", filterFood: "吃吃喝喝",
                 mapBtn: "📍 Google Maps", noMap: "無特定地點，隨緣相見", fillForm: "👉 點此填寫",
+                copyBtn: "📋 複製地址", // Added translation for copy button
                 chartLabel1: "💦 戰鬥/派對指數", chartLabel2: "🛋️ Chill/觀光指數"
             },
             th: {
@@ -190,27 +196,29 @@
                 villaTitle: "🏡 ที่พัก (วิลล่า)", emTitle: "🆘 ติดต่อฉุกเฉิน", emMap: "📍 แผนที่", emPolice: "ตำรวจท่องเที่ยว 1155",
                 safeTitle: "🛡️ ความปลอดภัย", safeMap: "เปิดแชร์โลเคชั่น <b>Google Map</b> เสมอ ตำรวจท่องเที่ยวโทร 1155 (นอกกรุงเทพฯ ใช้เบอร์บ้านโทร)",
                 taxTitle: "💸 การคืนภาษี (VAT Refund)", taxDesc: "ซื้อครบ ฿2,000 ในร้านที่มีป้าย (เช่น Big C) ขอใบกำกับภาษีได้ ต้องไปสนามบินล่วงหน้า <b>1 ชม.</b> เพื่อทำเรื่อง",
-                checkTitle: "สิ่งที่ต้องเตรียมก่อนเดินทาง", checkBadge: "คลิกเพื่อเช็คอิน",
+                checkTitle: "ตรวจสอบก่อนเดินทาง", checkBadge: "คลิกเพื่อเช็คอิน",
                 chartTitle: "คาดการณ์ Vibe แต่ละวัน", chartSub: "ดูกราฟแล้วแพลนพลังงานในแต่ละวันได้เลย!",
                 itinTitle: "ภาพรวมแผนการเดินทาง", itinSub: "คลิกเลือกวันเพื่อดูรายละเอียดแผนที่และงบประมาณ",
                 spotTitle: "แผนสำรอง & ของกิน (Free Style)", spotSub: "ถ้าอยากออกไปเดินเล่นหรือหาอะไรกิน เลือกจากตรงนี้ได้เลย!",
                 filterAll: "ทั้งหมด", filterAct: "กิจกรรม", filterFood: "ของกิน",
                 mapBtn: "📍 แผนที่ Google", noMap: "ไม่มีสถานที่เฉพาะเจาะจง เจอที่ไหนแวะที่นั่น", fillForm: "👉 คลิกเพื่อกรอกข้อมูล",
+                copyBtn: "📋 คัดลอกที่อยู่",
                 chartLabel1: "💦 ระดับความปาร์ตี้/สาดน้ำ", chartLabel2: "🛋️ ระดับความชิล/ท่องเที่ยว"
             }
         };
 
         // --- Multi-language Data Sources ---
+        // Removed `c_van` and updated app descriptions with credit card reminders
         const checklistData = [
             { id: 'c_cash', icon: '💰', title: { zh: '兩萬台幣等值現金', th: 'เงินสดเทียบเท่า 20,000 NTD' }, desc: { zh: '海關可能會抽查財力，務必準備。', th: 'ตม.ไทยอาจสุ่มตรวจเงินสด แนะนำให้เตรียมมา' } },
             { id: 'c_card', icon: '📄', title: { zh: '線上入境卡', th: 'ใบตม. ออนไลน์' }, desc: { zh: '出發前兩天填寫完畢。', th: 'กรอกให้เรียบร้อยก่อนเดินทาง 2 วัน' }, link: 'https://tdac.immigration.go.th/arrival-card/#/home' },
             { id: 'c_net', icon: '📶', title: { zh: '準備無線網路', th: 'เตรียมอินเทอร์เน็ต' }, desc: { zh: '提早買好 eSim 或實體網卡。', th: 'ซื้อ eSim หรือซิมการ์ดให้เรียบร้อย' } },
-            { id: 'c_van', icon: '🚐', title: { zh: '確認包車資訊', th: 'คอนเฟิร์มรถตู้' }, desc: { zh: '確認前往 Villa 的車費及接送時間。', th: 'คอนเฟิร์มค่ารถและเวลารับส่งไปวิลล่า' } },
             { id: 'c_gear', icon: '🎒', title: { zh: '戰鬥裝備', th: 'อุปกรณ์รบ (สงกรานต์)' }, desc: { zh: '防水包、手機防水套、墨鏡、帽子、防曬用品。', th: 'กระเป๋ากันน้ำ ซองกันน้ำโทรศัพท์ แว่นตากันแดด หมวก ครีมกันแดด' } },
-            { id: 'c_bolt', icon: '🚕', title: { zh: '下載 Bolt App (叫車)', th: 'โหลดแอป Bolt (เรียกรถ)' }, desc: { zh: '機車11km約฿33，汽車5km約฿100。', th: 'มอเตอร์ไซค์ 11 กม. ~33 บ. รถยนต์ 5 กม. ~100 บ.' } },
-            { id: 'c_grab', icon: '🛵', title: { zh: '下載 Grab App (外送)', th: 'โหลดแอป Grab (สั่งอาหาร)' }, desc: { zh: '主要用來叫食物。', th: 'ในพัทยาส่วนใหญ่ใช้สั่งอาหาร' } }
+            { id: 'c_bolt', icon: '🚕', title: { zh: '下載 Bolt App (叫車)', th: 'โหลดแอป Bolt (เรียกรถ)' }, desc: { zh: '機車11km約฿33，汽車5km約฿100。💡 建議先綁定信用卡。', th: 'มอเตอร์ไซค์ 11 กม. ~33 บ. รถยนต์ 5 กม. ~100 บ. 💡 แนะนำให้ผูกบัตรเครดิตไว้ก่อน' } },
+            { id: 'c_grab', icon: '🛵', title: { zh: '下載 Grab App (外送)', th: 'โหลดแอป Grab (สั่งอาหาร)' }, desc: { zh: '主要用來叫食物。💡 建議先綁定信用卡。', th: 'ในพัทยาส่วนใหญ่ใช้สั่งอาหาร 💡 แนะนำให้ผูกบัตรเครดิตไว้ก่อน' } }
         ];
 
+        // Added `copy` field to all items containing Google Map links
         const itineraryData = [
             {
                 id: 1, date: { zh: '4/16 (四)', th: '16 เม.ย. (พฤ.)' }, title: 'Day 1', 
@@ -222,8 +230,8 @@
                     { time: '14:30', title: { zh: '🛂 通關入境', th: '🛂 ผ่านตม.' }, desc: { zh: '預期人潮眾多，請耐心等候。', th: 'คนอาจจะเยอะ รอนิดนึงนะ' } },
                     { time: '15:00', title: { zh: '🚐 前往芭達雅', th: '🚐 เดินทางไปพัทยา' }, desc: { zh: '搭車前往芭達雅。', th: 'นั่งรถมุ่งหน้าสู่พัทยา' } },
                     { time: '17:00', title: { zh: '🏡 入住 Villa & 換錢', th: '🏡 เช็คอิน Villa & แลกเงิน' }, desc: { zh: '可派代表去 Terminal 21 的 SuperRich 換泰銖（先換兩萬，之後需要再換）。', th: 'ส่งตัวแทนไปแลกเงินที่ SuperRich ใน Terminal 21' } },
-                    { time: 'Dinner', title: { zh: '🍲 泰式火鍋/泰國蝦吃到飽', th: '🍲 หมูกระทะ/กุ้งเผาบุฟเฟ่ต์' }, desc: { zh: '一個人大概 400 泰銖。', th: 'คนละประมาณ 400 บาท' }, link: 'https://maps.app.goo.gl/ZicXtdspCRDscCoZ9' },
-                    { time: 'Night', title: { zh: '🌊 海灘街潑水節狂歡', th: '🌊 เล่นน้ำสงกรานต์ถนนเลียบหาด' }, desc: { zh: '從 Terminal 21 走到 Walking Street 入口，準備濕身！', th: 'เดินจาก Terminal 21 ไปจนถึงทางเข้า Walking Street เตรียมตัวเปียก!' }, links: [{name: 'Terminal 21', url: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9'}, {name: 'Walking Street', url: 'https://maps.app.goo.gl/ZS2A9mxanLhUoMi99'}] },
+                    { time: 'Dinner', title: { zh: '🍲 泰式火鍋/泰國蝦吃到飽', th: '🍲 หมูกระทะ/กุ้งเผาบุฟเฟ่ต์' }, desc: { zh: '一個人大概 400 泰銖。', th: 'คนละประมาณ 400 บาท' }, link: 'https://maps.app.goo.gl/ZicXtdspCRDscCoZ9', copy: '泰式火鍋 Pattaya' },
+                    { time: 'Night', title: { zh: '🌊 海灘街潑水節狂歡', th: '🌊 เล่นน้ำสงกรานต์ถนนเลียบหาด' }, desc: { zh: '從 Terminal 21 走到 Walking Street 入口，準備濕身！', th: 'เดินจาก Terminal 21 ไปจนถึงทางเข้า Walking Street เตรียมตัวเปียก!' }, links: [{name: 'Terminal 21', url: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9', copy: 'Terminal 21 Pattaya'}, {name: 'Walking Street', url: 'https://maps.app.goo.gl/ZS2A9mxanLhUoMi99', copy: 'Walking Street Pattaya'}] },
                     { time: 'Late', title: { zh: '🍻 買啤酒、麻回住宿', th: '🍻 ซื้อเบียร์ & กัญชา กลับที่พัก' }, desc: { zh: '回 Villa 繼續桑。', th: 'กลับไปชิลต่อที่วิลล่า' } }
                 ]
             },
@@ -232,31 +240,31 @@
                 subtitle: { zh: '動物農場、土嗨大挑戰', th: 'สวนสัตว์ & ผับท้องถิ่น' },
                 events: [
                     { time: 'Noon', title: { zh: '🍽️ 隨性午餐', th: '🍽️ มื้อเที่ยงชิลๆ' }, desc: { zh: '交給 Timmy 大廚下廚，或是叫 Grab 外送。', th: 'เชฟ Timmy ทำอาหารให้กิน หรือไม่ก็สั่ง Grab' } },
-                    { time: 'Afternoon', label: { zh: '路線 A', th: 'แผน A' }, title: { zh: '🐊 看鱷魚、摸長頸鹿/大象', th: '🐊 ดูโชว์จระเข้ & ให้อาหารยีราฟ/ช้าง' }, desc: { zh: '最好 15:00 前到，門票約 ฿320。', th: 'ควรไปถึงก่อน 15:00 น. ค่าเข้าประมาณ ฿320' }, link: 'https://maps.app.goo.gl/o57u4dRxN3NPrvw19' },
-                    { time: 'Afternoon', label: { zh: '路線 B', th: 'แผน B' }, title: { zh: '🔫 或者：打靶體驗', th: '🔫 หรือ: ไปยิงปืน' }, desc: { zh: '真槍實彈，花費至少破千元。', th: 'ยิงปืนจริง ค่าใช้จ่ายหลักพันขึ้นไป' }, link: 'https://maps.app.goo.gl/7xrgWhHn2hCKJCgX6' },
-                    { time: 'Dinner', title: { zh: '🐟 鯉魚主題餐廳', th: '🐟 ร้านอาหารธีมปลาคาร์ฟ' }, desc: { zh: '有鯉魚會在你旁邊游泳的特色餐廳！結束後回住宿 QK。', th: 'มีปลาคาร์ฟว่ายน้ำอยู่ข้างๆ! กินเสร็จกลับไปพักผ่อน' }, link: 'https://maps.app.goo.gl/1MNYkRoUfmnK1qSJ8' },
-                    { time: 'Late', title: { zh: '🪩 Area 39 (土嗨吧)', th: '🪩 Area 39 (ผับท้องถิ่น)' }, desc: { zh: '體驗最道地的泰國土嗨文化。', th: 'สัมผัสบรรยากาศผับแบบวัยรุ่นเทสดีไทยแท้ๆ' }, link: 'https://maps.app.goo.gl/Jw3WWRZUpwnwWLTQA' }
+                    { time: 'Afternoon', label: { zh: '路線 A', th: 'แผน A' }, title: { zh: '🐊 看鱷魚、摸長頸鹿/大象', th: '🐊 ดูโชว์จระเข้ & ให้อาหารยีราฟ/ช้าง' }, desc: { zh: '最好 15:00 前到，門票約 ฿320。', th: 'ควรไปถึงก่อน 15:00 น. ค่าเข้าประมาณ ฿320' }, link: 'https://maps.app.goo.gl/o57u4dRxN3NPrvw19', copy: 'The Million Years Stone Park & Pattaya Crocodile Farm' },
+                    { time: 'Afternoon', label: { zh: '路線 B', th: 'แผน B' }, title: { zh: '🔫 或者：打靶體驗', th: '🔫 หรือ: ไปยิงปืน' }, desc: { zh: '真槍實彈，花費至少破千元。', th: 'ยิงปืนจริง ค่าใช้จ่ายหลักพันขึ้นไป' }, link: 'https://maps.app.goo.gl/7xrgWhHn2hCKJCgX6', copy: 'Pattaya Shooting Park' },
+                    { time: 'Dinner', title: { zh: '🐟 鯉魚主題餐廳', th: '🐟 ร้านอาหารธีมปลาคาร์ฟ' }, desc: { zh: '有鯉魚會在你旁邊游泳的特色餐廳！結束後回住宿 QK。', th: 'มีปลาคาร์ฟว่ายน้ำอยู่ข้างๆ! กินเสร็จกลับไปพักผ่อน' }, link: 'https://maps.app.goo.gl/1MNYkRoUfmnK1qSJ8', copy: 'Carp Cafe Pattaya' },
+                    { time: 'Late', title: { zh: '🪩 Area 39 (土嗨吧)', th: '🪩 Area 39 (ผับท้องถิ่น)' }, desc: { zh: '體驗最道地的泰國土嗨文化。', th: 'สัมผัสบรรยากาศผับแบบวัยรุ่นเทสดีไทยแท้ๆ' }, link: 'https://maps.app.goo.gl/Jw3WWRZUpwnwWLTQA', copy: 'Area 39 Pattaya' }
                 ]
             },
             {
                 id: 3, date: { zh: '4/18 (六)', th: '18 เม.ย. (ส.)' }, title: 'Day 3', 
                 subtitle: { zh: '海景、市集與夜生活', th: 'วิวทะเล ตลาด & ไนท์ไลฟ์' },
                 events: [
-                    { time: 'Lunch', title: { zh: '🌅 The Sky Gallery', th: '🌅 The Sky Gallery' }, desc: { zh: '絕美海景網美餐廳。', th: 'ร้านอาหารวิวทะเล ถ่ายรูปสวยมาก' }, link: 'https://maps.app.goo.gl/5d8nu8FkGwPgEyWr7' },
-                    { time: 'Afternoon', title: { zh: '👀 眺望芭達雅海灘', th: '👀 จุดชมวิวหาดพัทยา' }, desc: { zh: '看風景拍美照。', th: 'ชมวิวและถ่ายรูปสวยๆ' }, link: 'https://maps.app.goo.gl/1PSDT6jn7QjBJRbw7' },
-                    { time: 'Afternoon', title: { zh: '🛶 水上市集', th: '🛶 ตลาดน้ำ 4 ภาค' }, desc: { zh: '體驗傳統水上市場風情。', th: 'สัมผัสบรรยากาศตลาดน้ำ' }, link: 'https://maps.app.goo.gl/kSia3Rx7LkXGJowx6' },
-                    { time: 'Evening', title: { zh: '🐯 老虎摸摸', th: '🐯 ถ่ายรูปกับเสือ' }, desc: { zh: '近距離接觸老虎。', th: 'สัมผัสเสือแบบใกล้ชิด' }, link: 'https://maps.app.goo.gl/6PpVXWJMqmiq23M77' },
-                    { time: 'Night', title: { zh: '💆‍♂️ 泰式馬殺雞', th: '💆‍♂️ นวดแผนไทย' }, desc: { zh: '舒緩一整天的疲勞。', th: 'ผ่อนคลายความเมื่อยล้าทั้งวัน' }, link: 'https://maps.app.goo.gl/xT5bJrvvu1Wa6S6F9' },
-                    { time: 'Late', title: { zh: '🎵 The Stone House & Midnight Club', th: '🎵 The Stone House & Midnight Club' }, desc: { zh: '聽歌喝酒，接著體驗芭達雅知名夜店！', th: 'ฟังเพลงดื่มชิลๆ แล้วไปต่อผับดังพัทยา!' }, links: [{name: 'The Stone House', url: 'https://maps.app.goo.gl/QD4UwCPJvznVM4Ym9'}, {name: 'Midnight Club', url: 'https://maps.app.goo.gl/UwnuYrpkFsCCDqgA7'}] }
+                    { time: 'Lunch', title: { zh: '🌅 The Sky Gallery', th: '🌅 The Sky Gallery' }, desc: { zh: '絕美海景網美餐廳。', th: 'ร้านอาหารวิวทะเล ถ่ายรูปสวยมาก' }, link: 'https://maps.app.goo.gl/5d8nu8FkGwPgEyWr7', copy: 'The Sky Gallery Pattaya' },
+                    { time: 'Afternoon', title: { zh: '👀 眺望芭達雅海灘', th: '👀 จุดชมวิวหาดพัทยา' }, desc: { zh: '看風景拍美照。', th: 'ชมวิวและถ่ายรูปสวยๆ' }, link: 'https://maps.app.goo.gl/1PSDT6jn7QjBJRbw7', copy: 'Pattaya City Sign - Viewpoint' },
+                    { time: 'Afternoon', title: { zh: '🛶 水上市集', th: '🛶 ตลาดน้ำ 4 ภาค' }, desc: { zh: '體驗傳統水上市場風情。', th: 'สัมผัสบรรยากาศตลาดน้ำ' }, link: 'https://maps.app.goo.gl/kSia3Rx7LkXGJowx6', copy: 'Pattaya Floating Market' },
+                    { time: 'Evening', title: { zh: '🐯 老虎摸摸', th: '🐯 ถ่ายรูปกับเสือ' }, desc: { zh: '近距離接觸老虎。', th: 'สัมผัสเสือแบบใกล้ชิด' }, link: 'https://maps.app.goo.gl/6PpVXWJMqmiq23M77', copy: 'Tiger Park Pattaya' },
+                    { time: 'Night', title: { zh: '💆‍♂️ 泰式馬殺雞', th: '💆‍♂️ นวดแผนไทย' }, desc: { zh: '舒緩一整天的疲勞。', th: 'ผ่อนคลายความเมื่อยล้าทั้งวัน' }, link: 'https://maps.app.goo.gl/xT5bJrvvu1Wa6S6F9', copy: 'Pattaya Massage' },
+                    { time: 'Late', title: { zh: '🎵 The Stone House & Midnight Club', th: '🎵 The Stone House & Midnight Club' }, desc: { zh: '聽歌喝酒，接著體驗芭達雅知名夜店！', th: 'ฟังเพลงดื่มชิลๆ แล้วไปต่อผับดังพัทยา!' }, links: [{name: 'The Stone House', url: 'https://maps.app.goo.gl/QD4UwCPJvznVM4Ym9', copy: 'The Stone House Pattaya'}, {name: 'Midnight Club', url: 'https://maps.app.goo.gl/UwnuYrpkFsCCDqgA7', copy: 'Midnight Club Pattaya'}] }
                 ]
             },
             {
                 id: 4, date: { zh: '4/19 (日)', th: '19 เม.ย. (อา.)' }, title: 'Day 4', 
                 subtitle: { zh: '森林系餐廳與逛街', th: 'คาเฟ่ป่า & ช้อปปิ้ง' },
                 events: [
-                    { time: 'Day', title: { zh: '🌳 The Forest by The Sky', th: '🌳 The Forest by The Sky' }, desc: { zh: '森林系絕美餐廳。', th: 'ร้านอาหารสไตล์ป่า สวยมาก' }, link: 'https://maps.app.goo.gl/aPs9DVNo2ee7YHVeA' },
-                    { time: 'Afternoon', title: { zh: '🛍️ Terminal 21', th: '🛍️ Terminal 21' }, desc: { zh: '吃東西加購物，旁邊還有小市集可以逛。', th: 'กินข้าว ช้อปปิ้ง มีตลาดนัดเล็กๆ ข้างๆ ด้วย' }, link: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9' },
-                    { time: 'Night', title: { zh: '🍢 Thepprasit 夜市', th: '🍢 ตลาดเทพประสิทธิ์' }, desc: { zh: '芭達雅週末必逛夜市！', th: 'ตลาดนัดสุดสัปดาห์พัทยาที่ต้องไป!' }, link: 'https://maps.app.goo.gl/eHPjicfpTpvMHm1B8' },
+                    { time: 'Day', title: { zh: '🌳 The Forest by The Sky', th: '🌳 The Forest by The Sky' }, desc: { zh: '森林系絕美餐廳。', th: 'ร้านอาหารสไตล์ป่า สวยมาก' }, link: 'https://maps.app.goo.gl/aPs9DVNo2ee7YHVeA', copy: 'The Forest by The Sky' },
+                    { time: 'Afternoon', title: { zh: '🛍️ Terminal 21', th: '🛍️ Terminal 21' }, desc: { zh: '吃東西加購物，旁邊還有小市集可以逛。', th: 'กินข้าว ช้อปปิ้ง มีตลาดนัดเล็กๆ ข้างๆ ด้วย' }, link: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9', copy: 'Terminal 21 Pattaya' },
+                    { time: 'Night', title: { zh: '🍢 Thepprasit 夜市', th: '🍢 ตลาดเทพประสิทธิ์' }, desc: { zh: '芭達雅週末必逛夜市！', th: 'ตลาดนัดสุดสัปดาห์พัทยาที่ต้องไป!' }, link: 'https://maps.app.goo.gl/eHPjicfpTpvMHm1B8', copy: 'Thepprasit Night Market' },
                     { time: '21:00', label: { zh: '特別班次', th: 'เที่ยวพิเศษ' }, title: { zh: '🚐 Evan 提前前往機場', th: '🚐 Evan ไปสนามบินล่วงหน้า' }, desc: { zh: 'Evan 和女友搭車回素萬那普機場（費用 ฿1000），等凌晨班機回台。', th: 'Evan และแฟนเหมากลับสนามบินสุวรรณภูมิ (฿1000) รอไฟลท์เช้ามืด' } }
                 ]
             },
@@ -265,15 +273,15 @@
                 subtitle: { zh: '最後衝刺與賦歸', th: 'วันสุดท้าย & เดินทางกลับ' },
                 events: [
                     { time: 'Afternoon', title: { zh: '🧳 退房 & 寄放行李', th: '🧳 เช็คเอาท์ & ฝากกระเป๋า' }, desc: { zh: '下午退房後，行李可以放我女友家。', th: 'เช็คเอาท์ตอนบ่าย เอากระเป๋าไปฝากบ้านแฟนผมได้' } },
-                    { time: 'Dinner', title: { zh: '🍲 火鍋吃到飽', th: '🍲 ชาบูบุฟเฟ่ต์' }, desc: { zh: '離開前的豐盛大餐。', th: 'มื้อใหญ่ก่อนกลับ' }, link: 'https://maps.app.goo.gl/v3sz3vafn18BFfKt6' },
+                    { time: 'Dinner', title: { zh: '🍲 火鍋吃到飽', th: '🍲 ชาบูบุฟเฟ่ต์' }, desc: { zh: '離開前的豐盛大餐。', th: 'มื้อใหญ่ก่อนกลับ' }, link: 'https://maps.app.goo.gl/v3sz3vafn18BFfKt6', copy: 'Suki Teenoi Pattaya' },
                     { time: '21:00', title: { zh: '🚐 前往機場', th: '🚐 เดินทางไปสนามบิน' }, desc: { zh: '從芭達雅搭車前往機場準備回台，結束完美旅程！', th: 'นั่งรถจากพัทยาไปสนามบินเพื่อบินกลับไต้หวัน จบทริปอย่างสมบูรณ์!' } }
                 ]
             }
         ];
 
         const spotsData = [
-            { category: 'activity', icon: '🏝️', title: { zh: '小珊瑚島一日遊', th: 'เกาะล้าน 1 วัน' }, desc: { zh: '搭船去小島租機車玩水。', th: 'นั่งเรือไปเกาะ เช่ามอเตอร์ไซค์เล่นน้ำ' }, link: 'https://maps.app.goo.gl/G3KwiRnmDSxrR3ta7' },
-            { category: 'activity', icon: '🔞', title: { zh: '99 Show Pattaya', th: '99 Show Pattaya' }, desc: { zh: '芭達雅經典成人秀，門票 1000 初。', th: 'โชว์ผู้ใหญ่สุดคลาสสิก ค่าเข้าพันนิดๆ' }, link: 'https://maps.app.goo.gl/mqDk1V4HRHks3kFS7' },
+            { category: 'activity', icon: '🏝️', title: { zh: '小珊瑚島一日遊', th: 'เกาะล้าน 1 วัน' }, desc: { zh: '搭船去小島租機車玩水。', th: 'นั่งเรือไปเกาะ เช่ามอเตอร์ไซค์เล่นน้ำ' }, link: 'https://maps.app.goo.gl/G3KwiRnmDSxrR3ta7', copy: 'Koh Larn' },
+            { category: 'activity', icon: '🔞', title: { zh: '99 Show Pattaya', th: '99 Show Pattaya' }, desc: { zh: '芭達雅經典成人秀，門票 1000 初。', th: 'โชว์ผู้ใหญ่สุดคลาสสิก ค่าเข้าพันนิดๆ' }, link: 'https://maps.app.goo.gl/mqDk1V4HRHks3kFS7', copy: '99 Show Pattaya' },
             { category: 'food', icon: '🍜', title: { zh: '在地美食推薦', th: 'แนะนำของกินโลคอล' }, desc: { zh: '推薦吃「船麵」與「母病 (Moo Ping 烤豬肉串)」，路邊看到就買！', th: 'แนะนำกิน "ก๋วยเตี๋ยวเรือ" กับ "หมูปิ้ง" เจอข้างทางเมื่อไหร่ซื้อเลย!' }, link: null }
         ];
 
@@ -281,10 +289,35 @@
         let currentLang = localStorage.getItem('pattayaLang') || 'zh';
         let currentDayId = 1;
         let currentFilter = 'all';
-        let checklistState = JSON.parse(localStorage.getItem('pattayaChecklistV5')) || {};
+        let checklistState = JSON.parse(localStorage.getItem('pattayaChecklistV6')) || {};
         let myChart = null;
 
         // --- Core Functions ---
+        // Copy to clipboard with color feedback
+        window.copyToClipboard = function(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerHTML;
+                const originalBg = btn.style.backgroundColor;
+                const originalColor = btn.style.color;
+                const originalBorder = btn.style.borderColor;
+
+                btn.innerHTML = currentLang === 'zh' ? '✅ 已複製' : '✅ คัดลอกแล้ว';
+                // Apply success colors (green-50, green-700, green-200)
+                btn.style.backgroundColor = '#ecfdf5';
+                btn.style.color = '#15803d';
+                btn.style.borderColor = '#bbf7d0';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = originalBg;
+                    btn.style.color = originalColor;
+                    btn.style.borderColor = originalBorder;
+                }, 2000);
+            }).catch(err => {
+                console.error('Copy failed', err);
+            });
+        };
+
         function toggleLang() {
             currentLang = currentLang === 'zh' ? 'th' : 'zh';
             localStorage.setItem('pattayaLang', currentLang);
@@ -295,7 +328,7 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (uiTranslations[currentLang][key]) {
-                    el.innerHTML = uiTranslations[currentLang][key]; // innerHTML supports <b> tags
+                    el.innerHTML = uiTranslations[currentLang][key];
                 }
             });
         }
@@ -303,6 +336,8 @@
         function renderChecklist() {
             const container = document.getElementById('checklist-container');
             container.innerHTML = '';
+            
+            // Re-fetch standard UI translations for any links
             const linkText = uiTranslations[currentLang].fillForm;
 
             checklistData.forEach(item => {
@@ -313,7 +348,7 @@
                 card.onclick = (e) => {
                     if(e.target.tagName.toLowerCase() === 'a') return;
                     checklistState[item.id] = !checklistState[item.id];
-                    localStorage.setItem('pattayaChecklistV5', JSON.stringify(checklistState));
+                    localStorage.setItem('pattayaChecklistV6', JSON.stringify(checklistState));
                     renderChecklist();
                 };
 
@@ -355,6 +390,7 @@
         function renderTimeline() {
             const dayData = itineraryData.find(d => d.id === currentDayId);
             const mapBtnText = uiTranslations[currentLang].mapBtn;
+            const copyBtnText = uiTranslations[currentLang].copyBtn;
             
             document.getElementById('current-day-title').innerText = `${dayData.title}：${dayData.date[currentLang]}`;
             
@@ -373,13 +409,22 @@
                 item.className = `timeline-line ${isLast ? 'border-transparent' : ''}`;
                 
                 let linkBtns = '';
-                if (event.link) {
-                    linkBtns = `<a href="${event.link}" target="_blank" class="mt-3 inline-block text-xs font-bold text-sky-600 bg-sky-50 hover:bg-sky-100 border border-sky-100 px-3 py-1.5 rounded-lg transition-colors">${mapBtnText}</a>`;
-                } else if (event.links) {
+                if (event.link || event.links) {
                     linkBtns = '<div class="flex gap-2 mt-3 flex-wrap">';
-                    event.links.forEach(l => {
-                        linkBtns += `<a href="${l.url}" target="_blank" class="text-xs font-bold text-sky-600 bg-sky-50 hover:bg-sky-100 border border-sky-100 px-3 py-1.5 rounded-lg transition-colors">📍 ${l.name}</a>`;
-                    });
+                    if (event.link) {
+                        linkBtns += `<a href="${event.link}" target="_blank" class="text-xs font-bold text-sky-600 bg-sky-50 hover:bg-sky-100 border border-sky-100 px-3 py-1.5 rounded-lg transition-colors">${mapBtnText}</a>`;
+                        if(event.copy) {
+                            linkBtns += `<button onclick="copyToClipboard('${event.copy}', this)" class="text-xs font-bold text-slate-600 bg-white hover:bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg transition-colors">${copyBtnText}</button>`;
+                        }
+                    } 
+                    if (event.links) {
+                        event.links.forEach(l => {
+                            linkBtns += `<a href="${l.url}" target="_blank" class="text-xs font-bold text-sky-600 bg-sky-50 hover:bg-sky-100 border border-sky-100 px-3 py-1.5 rounded-lg transition-colors">📍 ${l.name}</a>`;
+                            if(l.copy) {
+                                linkBtns += `<button onclick="copyToClipboard('${l.copy}', this)" class="text-xs font-bold text-slate-600 bg-white hover:bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg transition-colors">${copyBtnText} (${l.name})</button>`;
+                            }
+                        });
+                    }
                     linkBtns += '</div>';
                 }
 
@@ -406,6 +451,7 @@
             container.innerHTML = '';
             
             const mapBtnText = uiTranslations[currentLang].mapBtn;
+            const copyBtnText = uiTranslations[currentLang].copyBtn;
             const noMapText = uiTranslations[currentLang].noMap;
             const labelActText = uiTranslations[currentLang].filterAct;
             const labelFoodText = uiTranslations[currentLang].filterFood;
@@ -419,9 +465,16 @@
                 let badgeClass = spot.category === 'activity' ? 'bg-purple-100 text-purple-700' : 'bg-orange-100 text-orange-700';
                 let badgeText = spot.category === 'activity' ? labelActText : labelFoodText;
 
-                let linkBtn = spot.link 
-                    ? `<a href="${spot.link}" target="_blank" class="mt-4 w-full block text-center bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold py-2 rounded-lg text-sm transition-colors">${mapBtnText}</a>`
-                    : `<div class="mt-4 w-full block text-center bg-slate-50 text-slate-400 font-medium py-2 rounded-lg text-sm border border-dashed border-slate-200">${noMapText}</div>`;
+                let linkBtn = '';
+                if (spot.link) {
+                    linkBtn = `
+                    <div class="mt-4 flex gap-2 w-full">
+                        <a href="${spot.link}" target="_blank" class="flex-1 text-center bg-sky-50 border border-sky-100 hover:bg-sky-100 text-sky-700 font-bold py-2 rounded-lg text-sm transition-colors">${mapBtnText}</a>
+                        <button onclick="copyToClipboard('${spot.copy}', this)" class="flex-1 text-center bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold py-2 rounded-lg text-sm transition-colors">${copyBtnText}</button>
+                    </div>`;
+                } else {
+                    linkBtn = `<div class="mt-4 w-full block text-center bg-slate-50 text-slate-400 font-medium py-2 rounded-lg text-sm border border-dashed border-slate-200">${noMapText}</div>`;
+                }
 
                 card.innerHTML = `
                     <div class="flex-grow">
