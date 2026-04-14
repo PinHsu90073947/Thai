@@ -13,7 +13,8 @@
     <style>
         body {
             font-family: 'Noto Sans TC', 'Sarabun', sans-serif;
-            background-color: #f8fafc;
+            background: linear-gradient(160deg, #fef9f0 0%, #fdf6ee 30%, #f0faf7 60%, #eef7fb 100%);
+            min-height: 100vh;
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -33,26 +34,126 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background-color: #0ea5e9; 
-            border: 3px solid #e0f2fe;
+            background-color: #f59e0b;
+            border: 3px solid #fef3c7;
             position: absolute;
             left: -7.5px;
             top: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-line:hover .timeline-dot {
+            transform: scale(1.4);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
         }
         .timeline-line {
-            border-left: 2px solid #cbd5e1; 
+            border-left: 2px solid #fde68a;
             margin-left: 8px;
             padding-left: 1.5rem;
             padding-bottom: 2rem;
             position: relative;
         }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animation delays */
+        .stagger-1 { transition-delay: 0.05s; }
+        .stagger-2 { transition-delay: 0.1s; }
+        .stagger-3 { transition-delay: 0.15s; }
+        .stagger-4 { transition-delay: 0.2s; }
+        .stagger-5 { transition-delay: 0.25s; }
+        .stagger-6 { transition-delay: 0.3s; }
+        .stagger-7 { transition-delay: 0.35s; }
+        .stagger-8 { transition-delay: 0.4s; }
+
+        /* Card hover lift */
+        .card-hover {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12);
+        }
+        .card-hover:active {
+            transform: translateY(-1px);
+            transition-duration: 0.1s;
+        }
+
+        /* Glass card style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Gradient border effect */
+        .gradient-border {
+            position: relative;
+            background: white;
+            border-radius: 1rem;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(20, 184, 166, 0.3));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+
+        /* Timeline event card */
+        .timeline-event {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .timeline-event:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 16px -4px rgba(245, 158, 11, 0.15);
+            border-color: #fcd34d;
+        }
+
+        /* Day tab active animation */
+        .day-tab {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .day-tab:hover:not(.day-tab-active) {
+            transform: translateY(-2px);
+        }
+
+        /* Section separator */
+        section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 400px;
+        }
+
+        /* Smooth page scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Pulse animation for nav */
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
     </style>
 </head>
-<body class="text-slate-800 antialiased selection:bg-sky-200 pb-20">
+<body class="text-slate-800 antialiased selection:bg-amber-200 pb-20">
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <nav class="sticky top-0 z-50 backdrop-blur-xl bg-amber-50/60 border-b border-amber-100/30 shadow-lg shadow-amber-900/5">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="font-black text-xl text-sky-600 tracking-wide">🇹🇭 Pattaya 2026 4/16~4/20</div>
+            <div class="font-black text-xl text-amber-600 tracking-wide">🇹🇭 Pattaya 2026 4/16~4/20</div>
             <button id="langToggle" class="text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-full border border-slate-200 transition-colors flex items-center gap-1">
                 🇹🇼 中文 / 🇹🇭 ไทย
             </button>
@@ -61,10 +162,10 @@
 
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-10">
 
-        <section class="text-center space-y-4 pt-2">
+        <section class="text-center space-y-4 pt-2 animate-on-scroll">
             <h1 class="text-4xl md:text-5xl font-black text-slate-800 leading-tight">
                 <span data-i18n="title1">芭達雅潑水節</span> <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-teal-400" data-i18n="title2">五天四夜 Chill 遊指南</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-teal-400" data-i18n="title2">五天四夜 Chill 遊指南</span>
             </h1>
             <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-4 inline-block text-left shadow-sm">
                 <p class="font-bold text-amber-800 mb-1">🌟 <span data-i18n="ruleTitle">本團最高指導原則</span></p>
@@ -72,18 +173,18 @@
             </div>
         </section>
 
-        <section id="info-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <section id="info-section" class="glass-card rounded-2xl shadow-sm border border-amber-100/40 p-6 animate-on-scroll">
             <div class="mb-5">
                 <h2 class="text-2xl font-black flex items-center gap-2">ℹ️ <span data-i18n="infoTitle">實用資訊與安全</span></h2>
                 <p class="text-slate-500 text-sm mt-1" data-i18n="infoSub">住宿、緊急聯絡人與退稅相關規定</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl">
-                    <h3 class="font-bold text-sky-800 mb-2" data-i18n="villaTitle">🏡 住宿地點 (Villa)</h3>
-                    <p class="text-sm text-sky-900 font-medium">Pattaya Happy house By Star Elite</p>
+                <div class="bg-teal-50 border border-teal-100 p-4 rounded-xl">
+                    <h3 class="font-bold text-teal-800 mb-2" data-i18n="villaTitle">🏡 住宿地點 (Villa)</h3>
+                    <p class="text-sm text-teal-900 font-medium">Pattaya Happy house By Star Elite</p>
                     <div class="flex gap-2 mt-3 flex-wrap">
-                        <a href="https://maps.app.goo.gl/bRDVHMqZLvkExR9BA" target="_blank" class="text-xs font-bold text-sky-600 bg-white border border-sky-200 px-3 py-1.5 rounded-lg hover:bg-sky-100 transition-colors" data-i18n="mapBtn">📍 Google Maps</a>
+                        <a href="https://maps.app.goo.gl/bRDVHMqZLvkExR9BA" target="_blank" class="text-xs font-bold text-teal-600 bg-white border border-teal-200 px-3 py-1.5 rounded-lg hover:bg-teal-100 transition-colors" data-i18n="mapBtn">📍 Google Maps</a>
                         <button onclick="copyToClipboard('Pattaya Happy house By Star Elite', this)" class="text-xs font-bold text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors" data-i18n="copyBtn">📋 複製地址</button>
                     </div>
                 </div>
@@ -120,7 +221,7 @@
             </div>
         </section>
 
-        <section id="checklist-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <section id="checklist-section" class="glass-card rounded-2xl shadow-sm border border-amber-100/40 p-6 animate-on-scroll">
             <div class="mb-5">
                 <h2 class="text-2xl font-black flex items-center gap-2">
                     🎒 <span data-i18n="checkTitle">行前檢查</span> 
@@ -130,7 +231,7 @@
             </div>
         </section>
 
-        <section id="chart-section" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <section id="chart-section" class="glass-card rounded-2xl shadow-sm border border-amber-100/40 p-6 animate-on-scroll">
             <div class="mb-4 text-center">
                 <h2 class="text-2xl font-black mb-1">📊 <span data-i18n="chartTitle">每日行程 Vibe 預測</span></h2>
                 <p class="text-slate-500 text-sm" data-i18n="chartSub">行程排滿滿，哪天要保留體力一目瞭然！</p>
@@ -140,22 +241,22 @@
             </div>
         </section>
 
-        <section id="itinerary-section">
+        <section id="itinerary-section" class="animate-on-scroll">
             <div class="mb-4">
                 <h2 class="text-2xl font-black">📅 <span data-i18n="itinTitle">每日行程總覽</span></h2>
                 <p class="text-slate-500 text-sm mt-1" data-i18n="itinSub">點擊日期切換，附帶導航連結與花費預估。</p>
             </div>
-            <div class="flex overflow-x-auto hide-scrollbar gap-2 border-b-2 border-slate-100 pb-3 mb-6" id="day-tabs"></div>
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 md:p-8">
+            <div class="flex overflow-x-auto hide-scrollbar gap-2 border-b-2 border-slate-100 pt-2 pb-3 mb-6 pl-2" id="day-tabs"></div>
+            <div class="glass-card rounded-2xl shadow-sm border border-amber-100/40 p-5 md:p-8">
                 <div id="timeline-header" class="mb-8 border-b border-slate-100 pb-4">
-                    <h3 class="text-2xl font-black text-sky-600" id="current-day-title"></h3>
+                    <h3 class="text-2xl font-black text-amber-600" id="current-day-title"></h3>
                     <p class="text-slate-500 font-medium mt-1" id="current-day-desc"></p>
                 </div>
                 <div id="timeline-container" class="ml-2"></div>
             </div>
         </section>
 
-        <section id="spots-section">
+        <section id="spots-section" class="animate-on-scroll">
             <div class="mb-5">
                 <h2 class="text-2xl font-black">🗺️ <span data-i18n="spotTitle">備用行程與美食（Free Style）</span></h2>
                 <p class="text-slate-500 text-sm mt-1" data-i18n="spotSub">想出門走走或肚子餓？從這邊挑選，隨時出發！</p>
@@ -226,11 +327,11 @@
                 budget: { zh: '預估開銷：車費 ฿400 / 晚餐 ฿400 / 雜支 ฿300', th: 'งบประมาณ: ค่ารถ ฿400 / อาหารเย็น ฿400 / อื่นๆ ฿300' },
                 events: [
                     { time: '08:30', title: { zh: '📍 桃園機場二航集合', th: '📍 เจอที่สนามบินเถาหยวน Terminal 2' }, desc: { zh: '準備出發！', th: 'เตรียมตัวออกเดินทาง!' } },
-                    { time: '13:05', title: { zh: '🛬 抵達曼谷機場', th: '🛬 ถึงสนามบินกรุงเทพฯ' }, desc: { zh: '', th: '' } },
-                    { time: '14:30', title: { zh: '🛂 通關入境', th: '🛂 ผ่านตม.' }, desc: { zh: '預期人潮眾多，請耐心等候。', th: 'คนอาจจะเยอะ รอนิดนึงนะ' } },
-                    { time: '15:00', title: { zh: '🚐 前往芭達雅', th: '🚐 เดินทางไปพัทยา' }, desc: { zh: '搭車前往芭達雅。', th: 'นั่งรถมุ่งหน้าสู่พัทยา' } },
-                    { time: '17:00', title: { zh: '🏡 入住 Villa & 換錢', th: '🏡 เช็คอิน Villa & แลกเงิน' }, desc: { zh: '可派代表去 Terminal 21 的 SuperRich 換泰銖（先換兩萬，之後需要再換）。', th: 'ส่งตัวแทนไปแลกเงินที่ SuperRich ใน Terminal 21' } },
-                    { time: 'Dinner', title: { zh: '🍲 泰式火鍋/泰國蝦吃到飽', th: '🍲 หมูกระทะ/กุ้งเผาบุฟเฟ่ต์' }, desc: { zh: '一個人大概 400 泰銖。', th: 'คนละประมาณ 400 บาท' }, link: 'https://maps.app.goo.gl/ZicXtdspCRDscCoZ9', copy: '泰式火鍋 Pattaya' },
+                    { time: '10:20', title: { zh: '✈️ 飛機起飛 — 長榮 BR 201', th: '✈️ เครื่องออก — EVA Air BR 201' }, desc: { zh: '桃園 TPE → 曼谷 BKK，飛行時間約 3 小時 45 分鐘', th: 'เถาหยวน TPE → กรุงเทพฯ BKK เวลาบินประมาณ 3 ชม. 45 นาที' } },
+                    { time: '13:05', title: { zh: '🛬 抵達曼谷機場', th: '🛬 ถึงสนามบินกรุงเทพฯ' }, desc: { zh: '抵達蘇凡納布機場', th: 'ถึงสนามบินสุวรรณภูมิ' } },
+                    { time: '15:30', title: { zh: '🚐 前往芭達雅', th: '🚐 เดินทางไปพัทยา' }, desc: { zh: '搭車前往芭達雅。', th: 'นั่งรถมุ่งหน้าสู่พัทยา' }, imgs: ['car_take_us_to_pattaya_1.webp', 'car_take_us_to_pattaya_2.webp'] },
+                    { time: '17:30', title: { zh: '🏡 入住 Villa & 換錢', th: '🏡 เช็คอิน Villa & แลกเงิน' }, desc: { zh: '可派代表去 Terminal 21 的 SuperRich 換泰銖（先換兩萬，之後需要再換）。', th: 'ส่งตัวแทนไปแลกเงินที่ SuperRich ใน Terminal 21' } },
+                    { time: 'Dinner', title: { zh: '🍲 泰式火鍋/泰國蝦吃到飽', th: '🍲 หมูกระทะ/กุ้งเผาบุฟเฟ่ต์' }, desc: { zh: '一個人大概 400 泰銖。', th: 'คนละประมาณ 400 บาท' }, link: 'https://maps.app.goo.gl/ZicXtdspCRDscCoZ9', copy: '泰式火鍋 Pattaya', img: 'first_night_dinner.webp', imgScale: 0.7 },
                     { time: 'Night', title: { zh: '🌊 海灘街潑水節狂歡', th: '🌊 เล่นน้ำสงกรานต์ถนนเลียบหาด' }, desc: { zh: '從 Terminal 21 走到 Walking Street 入口，準備濕身！', th: 'เดินจาก Terminal 21 ไปจนถึงทางเข้า Walking Street เตรียมตัวเปียก!' }, links: [{name: 'Terminal 21', url: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9', copy: 'Terminal 21 Pattaya'}, {name: 'Walking Street', url: 'https://maps.app.goo.gl/ZS2A9mxanLhUoMi99', copy: 'Walking Street Pattaya'}] },
                     { time: 'Late', title: { zh: '🍻 買啤酒、麻回住宿', th: '🍻 ซื้อเบียร์ & กัญชา กลับที่พัก' }, desc: { zh: '回 Villa 繼續桑。', th: 'กลับไปชิลต่อที่วิลล่า' } }
                 ]
@@ -242,12 +343,21 @@
                     { time: 'Noon', title: { zh: '🍽️ 隨性午餐', th: '🍽️ มื้อเที่ยงชิลๆ' }, desc: { zh: '交給 Timmy 大廚下廚，或是叫 Grab 外送。', th: 'เชฟ Timmy ทำอาหารให้กิน หรือไม่ก็สั่ง Grab' } },
                     { time: 'Afternoon', label: { zh: '路線 A', th: 'แผน A' }, title: { zh: '🐊 看鱷魚、摸長頸鹿/大象', th: '🐊 ดูโชว์จระเข้ & ให้อาหารยีราฟ/ช้าง' }, desc: { zh: '最好 15:00 前到，門票約 ฿320。', th: 'ควรไปถึงก่อน 15:00 น. ค่าเข้าประมาณ ฿320' }, link: 'https://maps.app.goo.gl/o57u4dRxN3NPrvw19', copy: 'The Million Years Stone Park & Pattaya Crocodile Farm' },
                     { time: 'Afternoon', label: { zh: '路線 B', th: 'แผน B' }, title: { zh: '🔫 或者：打靶體驗', th: '🔫 หรือ: ไปยิงปืน' }, desc: { zh: '真槍實彈，花費至少破千元。', th: 'ยิงปืนจริง ค่าใช้จ่ายหลักพันขึ้นไป' }, link: 'https://maps.app.goo.gl/7xrgWhHn2hCKJCgX6', copy: 'Pattaya Shooting Park' },
-                    { time: 'Dinner', title: { zh: '🐟 鯉魚主題餐廳', th: '🐟 ร้านอาหารธีมปลาคาร์ฟ' }, desc: { zh: '有鯉魚會在你旁邊游泳的特色餐廳！結束後回住宿 QK。', th: 'มีปลาคาร์ฟว่ายน้ำอยู่ข้างๆ! กินเสร็จกลับไปพักผ่อน' }, link: 'https://maps.app.goo.gl/1MNYkRoUfmnK1qSJ8', copy: 'Carp Cafe Pattaya' },
+                    { time: 'Dinner', title: { zh: '🐟 鯉魚主題餐廳', th: '🐟 ร้านอาหารธีมปลาคาร์ฟ' }, desc: { zh: '有鯉魚會在你旁邊游泳的特色餐廳！結束後回住宿 QK。', th: 'มีปลาคาร์ฟว่ายน้ำอยู่ข้างๆ! กินเสร็จกลับไปพักผ่อน' }, link: 'https://maps.app.goo.gl/1MNYkRoUfmnK1qSJ8', copy: 'Carp Cafe Pattaya', img: 'fish_restaurant.webp', imgScale: 0.7 },
                     { time: 'Late', title: { zh: '🪩 Area 39 (土嗨吧)', th: '🪩 Area 39 (ผับท้องถิ่น)' }, desc: { zh: '體驗最道地的泰國土嗨文化。', th: 'สัมผัสบรรยากาศผับแบบวัยรุ่นเทสดีไทยแท้ๆ' }, link: 'https://maps.app.goo.gl/Jw3WWRZUpwnwWLTQA', copy: 'Area 39 Pattaya' }
                 ]
             },
             {
-                id: 3, date: { zh: '4/18 (六)', th: '18 เม.ย. (ส.)' }, title: 'Day 3', 
+                id: 3, date: { zh: '4/18 (六)', th: '18 เม.ย. (ส.)' }, title: 'Day 3',
+                subtitle: { zh: '自由活動日（Pin 載女友回老家）', th: 'วันอิสระ (Pin พาแฟนกลับบ้าน)' },
+                events: [
+                    { time: 'Day', title: { zh: '🚗 Pin 載女友回老家', th: '🚗 Pin พาแฟนกลับบ้านต่างจังหวัด' }, desc: { zh: '預計晚上 8-9 點回來，其他人今天自由活動！', th: 'คาดว่ากลับถึงประมาณ 2-3 ทุ่ม คนอื่นวันนี้อิสระเลย!' } },
+                    { time: 'Day', title: { zh: '🌴 自由活動建議', th: '🌴 แนะนำกิจกรรม' }, desc: { zh: '可以逛 Terminal 21、做 Spa、或在 Villa 耍廢放鬆。', th: 'ไปเดินเล่น Terminal 21, ทำสปา, หรือชิลที่วิลล่า' } },
+                    { time: 'Late', title: { zh: '🎵 The Stone House & Midnight Club', th: '🎵 The Stone House & Midnight Club' }, desc: { zh: '聽歌喝酒，接著體驗芭達雅知名夜店！', th: 'ฟังเพลงดื่มชิลๆ แล้วไปต่อผับดังพัทยา!' }, links: [{name: 'The Stone House', url: 'https://maps.app.goo.gl/QD4UwCPJvznVM4Ym9', copy: 'The Stone House Pattaya'}, {name: 'Midnight Club', url: 'https://maps.app.goo.gl/UwnuYrpkFsCCDqgA7', copy: 'Midnight Club Pattaya'}] }
+                ]
+            },
+            {
+                id: 4, date: { zh: '4/19 (日)', th: '19 เม.ย. (อา.)' }, title: 'Day 4',
                 subtitle: { zh: '海景、市集與夜生活', th: 'วิวทะเล ตลาด & ไนท์ไลฟ์' },
                 events: [
                     { time: 'Lunch', title: { zh: '🌅 The Sky Gallery', th: '🌅 The Sky Gallery' }, desc: { zh: '絕美海景網美餐廳。', th: 'ร้านอาหารวิวทะเล ถ่ายรูปสวยมาก' }, link: 'https://maps.app.goo.gl/5d8nu8FkGwPgEyWr7', copy: 'The Sky Gallery Pattaya' },
@@ -255,15 +365,6 @@
                     { time: 'Afternoon', title: { zh: '🛶 水上市集', th: '🛶 ตลาดน้ำ 4 ภาค' }, desc: { zh: '體驗傳統水上市場風情。', th: 'สัมผัสบรรยากาศตลาดน้ำ' }, link: 'https://maps.app.goo.gl/kSia3Rx7LkXGJowx6', copy: 'Pattaya Floating Market' },
                     { time: 'Evening', title: { zh: '🐯 老虎摸摸', th: '🐯 ถ่ายรูปกับเสือ' }, desc: { zh: '近距離接觸老虎。', th: 'สัมผัสเสือแบบใกล้ชิด' }, link: 'https://maps.app.goo.gl/6PpVXWJMqmiq23M77', copy: 'Tiger Park Pattaya' },
                     { time: 'Night', title: { zh: '💆‍♂️ 泰式馬殺雞', th: '💆‍♂️ นวดแผนไทย' }, desc: { zh: '舒緩一整天的疲勞。', th: 'ผ่อนคลายความเมื่อยล้าทั้งวัน' }, link: 'https://maps.app.goo.gl/xT5bJrvvu1Wa6S6F9', copy: 'Pattaya Massage' },
-                    { time: 'Late', title: { zh: '🎵 The Stone House & Midnight Club', th: '🎵 The Stone House & Midnight Club' }, desc: { zh: '聽歌喝酒，接著體驗芭達雅知名夜店！', th: 'ฟังเพลงดื่มชิลๆ แล้วไปต่อผับดังพัทยา!' }, links: [{name: 'The Stone House', url: 'https://maps.app.goo.gl/QD4UwCPJvznVM4Ym9', copy: 'The Stone House Pattaya'}, {name: 'Midnight Club', url: 'https://maps.app.goo.gl/UwnuYrpkFsCCDqgA7', copy: 'Midnight Club Pattaya'}] }
-                ]
-            },
-            {
-                id: 4, date: { zh: '4/19 (日)', th: '19 เม.ย. (อา.)' }, title: 'Day 4', 
-                subtitle: { zh: '森林系餐廳與逛街', th: 'คาเฟ่ป่า & ช้อปปิ้ง' },
-                events: [
-                    { time: 'Day', title: { zh: '🌳 The Forest by The Sky', th: '🌳 The Forest by The Sky' }, desc: { zh: '森林系絕美餐廳。', th: 'ร้านอาหารสไตล์ป่า สวยมาก' }, link: 'https://maps.app.goo.gl/aPs9DVNo2ee7YHVeA', copy: 'The Forest by The Sky' },
-                    { time: 'Afternoon', title: { zh: '🛍️ Terminal 21', th: '🛍️ Terminal 21' }, desc: { zh: '吃東西加購物，旁邊還有小市集可以逛。', th: 'กินข้าว ช้อปปิ้ง มีตลาดนัดเล็กๆ ข้างๆ ด้วย' }, link: 'https://maps.app.goo.gl/Tpe3zqUXw9zUeFoA9', copy: 'Terminal 21 Pattaya' },
                     { time: 'Night', title: { zh: '🍢 Thepprasit 夜市', th: '🍢 ตลาดเทพประสิทธิ์' }, desc: { zh: '芭達雅週末必逛夜市！', th: 'ตลาดนัดสุดสัปดาห์พัทยาที่ต้องไป!' }, link: 'https://maps.app.goo.gl/eHPjicfpTpvMHm1B8', copy: 'Thepprasit Night Market' },
                     { time: '21:00', label: { zh: '特別班次', th: 'เที่ยวพิเศษ' }, title: { zh: '🚐 Evan 提前前往機場', th: '🚐 Evan ไปสนามบินล่วงหน้า' }, desc: { zh: 'Evan 和女友搭車回素萬那普機場（費用 ฿1000），等凌晨班機回台。', th: 'Evan และแฟนเหมากลับสนามบินสุวรรณภูมิ (฿1000) รอไฟลท์เช้ามืด' } }
                 ]
@@ -274,7 +375,8 @@
                 events: [
                     { time: 'Afternoon', title: { zh: '🧳 退房 & 寄放行李', th: '🧳 เช็คเอาท์ & ฝากกระเป๋า' }, desc: { zh: '下午退房後，行李可以放我女友家。', th: 'เช็คเอาท์ตอนบ่าย เอากระเป๋าไปฝากบ้านแฟนผมได้' } },
                     { time: 'Dinner', title: { zh: '🍲 火鍋吃到飽', th: '🍲 ชาบูบุฟเฟ่ต์' }, desc: { zh: '離開前的豐盛大餐。', th: 'มื้อใหญ่ก่อนกลับ' }, link: 'https://maps.app.goo.gl/v3sz3vafn18BFfKt6', copy: 'Suki Teenoi Pattaya' },
-                    { time: '21:00', title: { zh: '🚐 前往機場', th: '🚐 เดินทางไปสนามบิน' }, desc: { zh: '從芭達雅搭車前往機場準備回台，結束完美旅程！', th: 'นั่งรถจากพัทยาไปสนามบินเพื่อบินกลับไต้หวัน จบทริปอย่างสมบูรณ์!' } }
+                    { time: '21:00', title: { zh: '🚐 前往機場', th: '🚐 เดินทางไปสนามบิน' }, desc: { zh: '從芭達雅搭車前往機場準備回台。', th: 'นั่งรถจากพัทยาไปสนามบิน' } },
+                    { time: '01:35', title: { zh: '✈️ 飛機起飛 — 長榮 BR 206（4/21 凌晨）', th: '✈️ เครื่องออก — EVA Air BR 206 (เช้ามืด 21 เม.ย.)' }, desc: { zh: '曼谷 BKK → 桃園 TPE，飛行時間約 3 小時 45 分鐘，06:20 抵達桃園', th: 'กรุงเทพฯ BKK → เถาหยวน TPE เวลาบินประมาณ 3 ชม. 45 นาที ถึงเถาหยวน 06:20' } }
                 ]
             }
         ];
@@ -343,7 +445,7 @@
             checklistData.forEach(item => {
                 const isChecked = checklistState[item.id] || false;
                 const card = document.createElement('div');
-                card.className = `p-4 rounded-xl border-2 transition-all cursor-pointer flex items-start gap-3 ${isChecked ? 'bg-slate-50 border-slate-200 opacity-60' : 'bg-white border-sky-100 hover:border-sky-300'}`;
+                card.className = `p-4 rounded-xl border-2 transition-all cursor-pointer flex items-start gap-3 card-hover ${isChecked ? 'bg-slate-50 border-slate-200 opacity-60' : 'bg-white/80 backdrop-blur-sm border-amber-100 hover:border-amber-300'}`;
                 
                 card.onclick = (e) => {
                     if(e.target.tagName.toLowerCase() === 'a') return;
@@ -356,7 +458,7 @@
                     ? `<div class="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-white text-xs">✓</span></div>`
                     : `<div class="w-6 h-6 rounded-full border-2 border-slate-300 flex-shrink-0 mt-0.5"></div>`;
 
-                let linkHtml = item.link ? `<a href="${item.link}" target="_blank" class="mt-2 inline-block text-xs font-bold text-sky-600 hover:text-sky-800 bg-sky-50 px-2 py-1 rounded" onclick="event.stopPropagation();">${linkText}</a>` : '';
+                let linkHtml = item.link ? `<a href="${item.link}" target="_blank" class="mt-2 inline-block text-xs font-bold text-amber-600 hover:text-amber-800 bg-amber-50 px-2 py-1 rounded" onclick="event.stopPropagation();">${linkText}</a>` : '';
 
                 card.innerHTML = `
                     ${checkUI}
@@ -376,7 +478,7 @@
             itineraryData.forEach(day => {
                 const isSelected = day.id === currentDayId;
                 const btn = document.createElement('button');
-                btn.className = `flex-shrink-0 px-5 py-3 rounded-xl text-sm transition-all border-2 ${isSelected ? 'bg-sky-600 text-white border-sky-600 shadow-md font-black' : 'bg-white text-slate-600 border-slate-100 hover:border-sky-200 font-bold'}`;
+                btn.className = `day-tab flex-shrink-0 px-5 py-3 rounded-xl text-sm border-2 ${isSelected ? 'day-tab-active bg-gradient-to-r from-amber-500 to-orange-500 text-white border-amber-500 shadow-lg shadow-amber-200/50 font-black scale-105' : 'bg-white/80 backdrop-blur-sm text-slate-600 border-amber-100 hover:border-amber-300 font-bold'}`;
                 btn.innerHTML = `<div>${day.title}</div><div class="text-xs ${isSelected?'font-medium opacity-90':'font-normal opacity-70'}">${day.date[currentLang]}</div>`;
                 btn.onclick = () => {
                     currentDayId = day.id;
@@ -412,14 +514,14 @@
                 if (event.link || event.links) {
                     linkBtns = '<div class="flex gap-2 mt-3 flex-wrap">';
                     if (event.link) {
-                        linkBtns += `<a href="${event.link}" target="_blank" class="text-xs font-bold text-sky-600 bg-sky-50 hover:bg-sky-100 border border-sky-100 px-3 py-1.5 rounded-lg transition-colors">${mapBtnText}</a>`;
+                        linkBtns += `<a href="${event.link}" target="_blank" class="text-xs font-bold text-teal-600 bg-teal-50 hover:bg-teal-100 border border-teal-100 px-3 py-1.5 rounded-lg transition-colors">${mapBtnText}</a>`;
                         if(event.copy) {
                             linkBtns += `<button onclick="copyToClipboard('${event.copy}', this)" class="text-xs font-bold text-slate-600 bg-white hover:bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg transition-colors">${copyBtnText}</button>`;
                         }
                     } 
                     if (event.links) {
                         event.links.forEach(l => {
-                            linkBtns += `<a href="${l.url}" target="_blank" class="text-xs font-bold text-sky-600 bg-sky-50 hover:bg-sky-100 border border-sky-100 px-3 py-1.5 rounded-lg transition-colors">📍 ${l.name}</a>`;
+                            linkBtns += `<a href="${l.url}" target="_blank" class="text-xs font-bold text-teal-600 bg-teal-50 hover:bg-teal-100 border border-teal-100 px-3 py-1.5 rounded-lg transition-colors">📍 ${l.name}</a>`;
                             if(l.copy) {
                                 linkBtns += `<button onclick="copyToClipboard('${l.copy}', this)" class="text-xs font-bold text-slate-600 bg-white hover:bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg transition-colors">${copyBtnText} (${l.name})</button>`;
                             }
@@ -430,15 +532,26 @@
 
                 let labelHtml = event.label ? `<span class="ml-2 text-[10px] font-black tracking-wider text-teal-600 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded uppercase">${event.label[currentLang]}</span>` : '';
 
+                let imgHtml = '';
+                if (event.img && event.imgScale) {
+                    const pct = event.imgScale * 100;
+                    imgHtml = `<img src="${event.img}" alt="" loading="lazy" decoding="async" class="rounded-lg mt-3 cursor-zoom-in" style="width:${pct}%" onclick="openLightbox('${event.img}')">`;
+                } else if (event.img) {
+                    imgHtml = `<img src="${event.img}" alt="" loading="lazy" decoding="async" class="w-full max-h-52 object-cover rounded-lg mt-3 cursor-zoom-in" onclick="openLightbox('${event.img}')">`;
+                } else if (event.imgs) {
+                    imgHtml = `<div class="flex gap-2 mt-3 overflow-x-auto hide-scrollbar">${event.imgs.map(src => `<img src="${src}" alt="" loading="lazy" decoding="async" class="h-40 rounded-lg object-cover flex-shrink-0 cursor-zoom-in" onclick="openLightbox('${src}')">`).join('')}</div>`;
+                }
+
                 item.innerHTML = `
                     <div class="timeline-dot"></div>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-slate-300 transition-colors">
+                    <div class="timeline-event bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-slate-100 animate-on-scroll stagger-${Math.min(index + 1, 8)}">
                         <div class="flex items-center mb-1">
-                            <span class="text-xs font-black text-sky-700 bg-sky-100 px-2 py-1 rounded">${event.time}</span>
+                            <span class="text-xs font-black text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">${event.time}</span>
                             ${labelHtml}
                         </div>
                         <h4 class="font-bold text-slate-800 text-lg mt-1">${event.title[currentLang]}</h4>
                         ${event.desc[currentLang] ? `<p class="text-slate-600 text-sm mt-1.5 leading-relaxed">${event.desc[currentLang]}</p>` : ''}
+                        ${imgHtml}
                         ${linkBtns}
                     </div>
                 `;
@@ -460,7 +573,7 @@
 
             filteredSpots.forEach(spot => {
                 const card = document.createElement('div');
-                card.className = 'bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col h-full';
+                card.className = 'glass-card card-hover gradient-border p-5 rounded-xl shadow-sm border border-amber-100/40 flex flex-col h-full';
                 
                 let badgeClass = spot.category === 'activity' ? 'bg-purple-100 text-purple-700' : 'bg-orange-100 text-orange-700';
                 let badgeText = spot.category === 'activity' ? labelActText : labelFoodText;
@@ -469,7 +582,7 @@
                 if (spot.link) {
                     linkBtn = `
                     <div class="mt-4 flex gap-2 w-full">
-                        <a href="${spot.link}" target="_blank" class="flex-1 text-center bg-sky-50 border border-sky-100 hover:bg-sky-100 text-sky-700 font-bold py-2 rounded-lg text-sm transition-colors">${mapBtnText}</a>
+                        <a href="${spot.link}" target="_blank" class="flex-1 text-center bg-teal-50 border border-teal-100 hover:bg-teal-100 text-teal-700 font-bold py-2 rounded-lg text-sm transition-colors">${mapBtnText}</a>
                         <button onclick="copyToClipboard('${spot.copy}', this)" class="flex-1 text-center bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold py-2 rounded-lg text-sm transition-colors">${copyBtnText}</button>
                     </div>`;
                 } else {
@@ -522,16 +635,16 @@
                         {
                             label: uiTranslations[currentLang].chartLabel1,
                             data: [95, 85, 90, 60, 20],
-                            backgroundColor: 'rgba(14, 165, 233, 0.2)',
-                            borderColor: 'rgba(14, 165, 233, 1)',
-                            pointBackgroundColor: 'rgba(14, 165, 233, 1)',
+                            backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                            borderColor: 'rgba(245, 158, 11, 1)',
+                            pointBackgroundColor: 'rgba(245, 158, 11, 1)',
                             borderWidth: 2,
                             fill: true
                         },
                         {
                             label: uiTranslations[currentLang].chartLabel2,
                             data: [20, 60, 80, 95, 80],
-                            backgroundColor: 'rgba(20, 184, 166, 0.2)',
+                            backgroundColor: 'rgba(20, 184, 166, 0.15)',
                             borderColor: 'rgba(20, 184, 166, 1)',
                             pointBackgroundColor: 'rgba(20, 184, 166, 1)',
                             borderWidth: 2,
@@ -567,11 +680,56 @@
             renderChart();
         }
 
+        // Scroll animation observer
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('animate-in');
+                    scrollObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.08 });
+
+        function observeAnimations() {
+            document.querySelectorAll('.animate-on-scroll:not(.animate-in)').forEach(el => {
+                scrollObserver.observe(el);
+            });
+        }
+
+        // Override renderTimeline to re-observe new elements
+        const _origRenderTimeline = renderTimeline;
+        renderTimeline = function() {
+            _origRenderTimeline();
+            requestAnimationFrame(observeAnimations);
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('langToggle').addEventListener('click', toggleLang);
             initFilterButtons();
             updateAllUI();
+            observeAnimations();
         });
+        // Lightbox
+        window.openLightbox = function(src) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.src = src;
+            lb.classList.remove('hidden');
+            requestAnimationFrame(() => lb.classList.add('lb-visible'));
+        };
+        window.closeLightbox = function() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('lb-visible');
+            setTimeout(() => { lb.classList.add('hidden'); }, 300);
+        };
     </script>
+
+    <div id="lightbox" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="" class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl transform scale-90 transition-transform duration-300">
+    </div>
+    <style>
+        .lb-visible { opacity: 1 !important; }
+        .lb-visible #lightbox-img { transform: scale(1) !important; }
+    </style>
 </body>
 </html>
